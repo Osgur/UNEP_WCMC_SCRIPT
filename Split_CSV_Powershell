@@ -1,0 +1,1 @@
+$i=0; Get-Content "C:\Users\osgurm\OneDrive - WCMC\Ferdi\Licensed_WKT.csv" -ReadCount 5000 | %{$i++; $_ | Out-File "C:\Users\osgurm\OneDrive - WCMC\Ferdi\Licensed_WKT_Split\Licensed_WKT_Split_$i.csv"}
