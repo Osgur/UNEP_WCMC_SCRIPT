@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #1a3022	;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+lil {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px ;
+  text-decoration: none;
+}
+li a:hover {
+  background-color: #111;
+}
+
+
+/* Pattern styles */
+.container {
+  display: table;
+  width: 100%;
+}
+
+.left-half {
+  background-color: #c45b1a;
+  padding: 10px;
+  position: absolute;
+  left: 0px;
+  width: 50%;
+}
+
+.right-half {
+  background-color: #c45b1a;
+    padding: 10px;
+  position: absolute;
+  right: 0px;
+  width: 50%;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #E6E6FA;
+   color: white;
+   text-align: left;
+}
+</style>
+</head>
+<body bgcolor="#c45b1a">
+
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#about">About</a></li>
+  <lil> <b href="#Osgur McDermott Long" style="font-size:25px">Osgur McDermott Long </b></lil>
+</ul>
+
+<!-- Slide Show -->
+<center>
+<section class="w3-row-padding w3-center w3-light-grey">
+<section>
+  <img class="mySlides" src="https://lh3.googleusercontent.com/PjJjo1Hlrk9MxFsOXqLzqUDyFKC0qQu6JpVyp-FcRFD2TFTY7xCGWM3e7W2UUGHDG3KlmcOdCPvNGGtLHDLfB4DiiYfYoyABy4pzuEaVsipkZKLJPXChQp8odh2g2U4-LS5L97xJww=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/dJFco3DqHKvx2_0votAMPmQeJr2MkKKX8WzB6MTPccgzvHKLVuOrT7idccnWr1Xwb9YWwrRO_T-Ed8oPhZOybxpj442ry9A6LC65AbeMl9SBO2Lyy-DZK6D0nnztQdBQNCESwNkunQ=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/772VkD33kpG_SQJ1FxHTtijCnmFGO1v9arIw9mJaubMsosCbum4CYXACWYYGJkQCAo2hpdkPSK6QwbeXOdxIPr0rW9uEkTJdAhglIYDgS7x6Gju7UM3mkyOs3f7CoJBqchyOhpfZXA=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/rky3nE19kwRzIZtkhN7w-HJzN_Y5RytXxfNqxEu8THwGH0Gq3uUXcphYVCpnWDdRscArmUZHvjF-cMG32XuyeEbzi-wBVVGgfHeGMqP-oWDK9h1WJO_PFudYg_seTEnwV4bgl9Y8gg=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/VjJRaAdmMhS9RZkBKDPTjtQfjwnwUmddgHhXHKnSnAjaJPHTP1LjRruw_e7gZQpFPSRAFxBcTQt8f_wTlefMLqZIbWuY3e8zVNxn4Nvib6q2mFVgMIfbYad6g-HovRK9MggOpmxZrQ=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/lACrhhLoNGeXV9Wh-53Xk2EmHf-zyicUk2m1AjA6j6UmPuiwh1b1XcPgpgOY6WmIlpkm8Ci4UfzDQcckP9y8Jy_k0YYB_UUeZhUB-JJjW2pzFpVA8Q0vbb29WrG7AYq0KyeQtHJXSQ=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/uWUEULOu1AQTrBQHBDIfs1m7Y7owkXtM6QOqEP6xGDMVoIO6saiSnmwfXvmTfN6csflt0IEJgekOuENa6NkpPNuthuEHjmS1QAu-2yQoPKUE2sz8lSJ-IXPuBS5UqhRiMbvSIHzwKw=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/8_30UepCLdv-hgfE8OS5swddoPuyP-fwEj8a3IieI51M79TItskRwlxUyMewgEyHIf5VG1jocOvhQdtdRs9_mFxVYpuYfxORoiz5LviPeJAyerLCbWSyOTX9WCW0Y3LNLVcCTvznAg=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/ripB9lESLKtEMxAF2uX9D93cAo22HA8RVbcSUcHh1eE1LO_204H3nACGNM3xbxXNEouFcH7TGoLteE5ppcIJHjqTLD2OAVn90aF54jWgLBVtHqyVuQ3UwPViCsiYJU5Xnk4CVWo6MQ=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/wBlCVALiwSBZ5wNTiSr23ciYpH9ASjFyYsSU1pQyACsGQHWAa-wd3rz_sIU0OYQ1Bl3kQNNJs9u2eWHJmFfTuN1jH2UFfL5vjQt6nfpTZzkt7wL_wY3yIMPp_lp8hawNJIJ1Zk7ATg=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/UOeZDDcm8b-kvYNM7zJdPC2zvnD6hNrP0kESixgRL-Yejq_Dyuf9M6N4BGlTHHIYHcsF24yaptQV7rnKW2QU270WoK6y86lpQXvv5hycvfcxVN2A0zxl6uzLJENqcZwpwSlbPJylYw=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/JOGBKJfaf6mVqrRmoQ7TmtRU2xUY2YSs9ely4Lk53NtFPJxMDPDQj-C6QueuDpeCvNM7YZ6Uw5ss0rMGsFTwbASMIrQjfNesqmj-IhU1B_Ckn-at0dPBFY2aYWXdzrZlKqRzEWm4FQ=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/ho8b6iWQXVjRfe2rGZ38fsXlib0-56eqj0g_zQdKgnSAo0792Ab8SeZzIbXxh66FkTWtSts6H_r47LgVl5SR2uRLEatqf3hLGgLE0UecwhmEgeWbxd3Huc2CwX3op6_ePrHe_bn6Hw=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/8TwEeL_x53sm1HtYDqTpmRj6JAE7FA2YlKOkFzKY83jsIrm6pGcRrBCzj1EqMjpXjjyHWXzmgRtKD_VprzV8vHm4BjrpMvI7kZuvPJ9bGQst-L8QMveSE-8Z5CLl9G6ZvMURb1lKQA=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/5R5Ls8XFmitBhIlVkZ0bia0dDg6ODGOL_yik3yMcAzjCTMvCX6gXohYbKHL3lytCg6TPVc90IPDj-7qchCa2am-qL1oTFh-pB0glvu_JTKzVAZgDr16VnMHMnjZQn4pY_vddGgt7NQ=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/YQqOrpJ43dMSBxL_rDZHi801Gsf0yefMXfiMjJ6k3UOUxtNpqrZEhmCVzpB9Sa7bC8KYhHBnwJR7_-WMYzDke-c62vtmBYs5K2e1XQUxzWv2XckBP2fZL279k5whHE24wKlN5AGxDQ=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/iA8W-cOr9OlHE3jmITW3chHZbdpIouWj64ZLuGRU3bQEwh4Lqh_FPLR6o71ZpJ2JQwNShIqIm4ap-tMC8dms9VGLDUrH2dCqL45I4PAuIAeEvM30gTHi6duKYaS4CNHr8tN74Kzovg=w1920-h1080"style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/9gbZ109QXFYfoV47SfwgLUoiSCWUCii3rldemr2O-3Adrh80LEkls6Sr4Qv0V2VoYa0g3VBwm4Tg6Cl9E-r2GVI-d7Mo_SCGbGn2h32pYipgfHonyB_RJIqovzQmuMo6HgNZ055Msg=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/FSQRki3nUUK5ANlLnE6RUUYW8lFMXHPvYSruChs8nQtukUEZDu3Wtd93OszrIOSra61vXwlKjZ_z7EHk24JvvsJxSNQUW38h9Dy7m7hdWk9X6AT0_ZC_RoOzRMg20DjnRJhFf3VgHA=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/eoFeYZpnbsNgPU1g-BMkNDekW7ALBIcwonrzLxTQABD7URNaO2Q_Ahp3sMQJTkJ9uGEFlZLnSqG6q87EG7GCEK4FsvqaUFqg7Np8U8ZkbjWRjC-NLA3LNh6kP2G84ZdzPn9eoHstjQ=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/xDZRII-dYaaVf-tW6UHmA8pDk3tleed1Fn6XA2v1mS8RnRz0W2-X1FlFojg-tk9uOpi_e581EwhE6guLCeW-ukR7pMLHvDRMXg8Hs2nn4W_J-ujWSi73XUXvDBJH1s8qpsP1_y06aQ=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/f9QMz_KIjJ_ZKBNgzA7COlY68PbqG8BYqYqUO2jFWGs1Df4KQ3cmI5-sCgl4BM6HYVuTPYg4CYzOLQRh2jSv8-6rsmWJLRlS7k7m7Oe75eY5DE0z_vgTKuYLFkeZ0bDgvP33pdt3_g=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/3lh9p8KB5j0BBGUJTH1Jzfr6ZTuWH8lW9PMiBgpS9qqbPQf97Vf1NpcJjoIl2dD6D88HAh9VvyPZeq-Ibr97Ed3Dzv7Gl4ZhfCPcXc2YNu5bwDYHCPah7j2GWI_81WKOtEmD53Btvw=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/4orix_saCxctVbdspSguOZ-juhswk8usLERbpzqKGTBjuP_EQoZBkwXiTMFPs6GZMU8pqo_jYxRI4IIVirJP9LanWgZtByJbNTnft3YiV0gYAq29y2IZW9lZyX_NCTI_BEU5c-qFcA=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/sSQG-pCNs1IvCQeuw5gCno2F1iuz9TEq6y88gLv_htewxII4mO5wjLpMynx8XRsDGv89JEX3QjgcTvo1cW1zkt00vCW-2mWWImzn2_p2BDLF8OAxl13bk-t-oF7zJwv5ir1afZ6O8Q=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/5JV5yzFen7rulvR1u7ZvVex7ryWmgoV2uLHbJR4A6_b0ZaJyROyLxrChisE2eZd1YMeQQKW8w1--Ivgd_VeXS3rFUiPupZUEMRCnPe5iziP1JZWvFkYxcCTwsmocXeWpemB7ghB7KQ=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/wfZjP-aOCZwAhxWL7jIeWvY4JJdwSJav_MJYI3rGPwuj8wV67Ab7meq2tw8whG8Yl4im-w3l_FX52kFZmvyS6xg7lHadSWXTGznQSdff2eZBcQ84CM6pytwVxZvJBReldpkFonEF7A=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/Ga52mjdcTH3VRDOGuktzwE6viDZJ5p7RrCHAAhb6rGZ7pb70kTQ98v2IAZ3kuaSqpNjOfM4NQzopCRgVFHxrLvPE-5tlrzXyAwpKMzvLiDaKygZtyVDyU06PLdVbsGtczqyhGbhaaQ=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/8W_SWTF2oftMgGKjoLa6qzUGleTP6AQY7cCxAtDaE8Kz7TPNkx7iS_CXQqibf4q6-gGpcaHhWDX2duKORZ8yJ91D1z_12rn84ZRV6WuD07ysQTiLjoM-V1TgkUckMxm7zSm4nz4h7A=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/iCpEWqxBcTYz2dXclIQxKjuK75iDLDdtLrMlf4BPl7LrpPC0isdFQtJBYrGCLLmoMFPr_y8sQ6nDkijG-0LP8bcpyHegfsnWlaCeJu4WMRfiVn4-F711t0tndIgMlpB64Soqu0k56A=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/gxpSDWshujkCtlsX_4QQS6BBmbS9yreWRxX3JJSbJU8g1YFrKYbGlY3VP9rCTXf0_r_Y5mwhtWUdeZnIVKRlUQBDmDypKz6ZuMiA1HWfhv8LKJZLjXuxC_I9ZfN11NBRxXDSM9Bnxg=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/fW_FiPfr9VM2HglUEx5Mu4eGlio32kKu4rP5QrASWW7jyUHxyLrTX8Ai430aSrM2NS1br_JOk8sq6tKJVS-Q30vpMxuQrny9TNjV91moTzQ7UpBxEHpjQBwSChTwylXGnjz0uY3nbg=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/qPlR4GnZJZcajTF43XYbJY7t7ckwAZ1qV7YCucbdbQEDN2SUYa8SaiXNNN7oqYQ9ONVhJzPBPIb4ec67pq9Y1PKydjdV9CItydMJcD5l5IPJ3jf3ju3oM26DEmeLegFXJggGco56UA=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/hFdHxcFUI8WCqZye3omaJWJy1kHRrH_fUJdAUwRuYTMxiStCk7yLNW1HDBJmnPlijXQxzgrkDe0FrSIbEHJcxLuRcO376p34AarEowmZ6tk9eJImy5kK_1OkXCoyklVVY2XGb9yV-w=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/GCQVcLZi-pd4s-YixCS-VIydh_7UUiRU1-YinPoLG4yjaObIcjiK1K9VXAxcDZliTbJMPgLjyvE6W5jsWq71_i8nDi_PZBZb6YvYj94TInKT7oVBV-7IQWKJRvdGDLfHx8QKIFpDEg=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/vY_qrMDRhYbNjr2jeuUXKFnO95IxVNtPO8jzStDoO7BK3kSgqFtEXFFZruGMoCyOEX4EbFq3ytJKIv0XtzK2q6CFEmpA6pOV9cIbjBZw4Q18x-Fafbph6sBd1As7bcfHq-VKM3BGvA=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/KPI4e3qjvU_ANeHHayeoa92VenyoirK0ZeslQGDiUJVnnybjNaJRoCME_2hhyIEFCvLnxOR12IRG6vZkUgTEo1xH9_6MYsNKcdKujmyvGS8Kgqq9RXQzgw7fGDGsD9CGvlhPWm8y6g=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/859lsfxMC7QDV11YYRgNr_-mocnX_WVu9S-eb1C5TSsCt-iPb8nQsV_T61VdtPyOuFsWQ2nMEDpKhJGbqS4wW6gdvNOSUXhf680i81pIGFyr0247X8zjZlInEjifcyydbHUhyeYSZQ=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/bXY6gbJvcnSyehxQKKS2l89MvyW-1Y6MkEMnVCng24sI9WFPrgRnunrWG-pcvsSnEf7fu9wMmIU9eggQY7mnjgGms_hOVWDeqAKyRWrhdq4brxAZdC0a5-No4jMAR1cC3muXD_CA_Q=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/lP_riuTcj810Zayf2wAyPuI_TTyl0XhrgaK20pSRWthVzW8zyA3wLBwj2Y2GptMWrSLsKA9ZP0sRDgDOinOzKq1x6KCh_hwnOSNLQmWcvhTyDz0kJ2LzHKN-P1edWy55SXXR3-9iuQ=w1920-h1080" style="width:1200px">
+  <img class="mySlides" src="https://lh3.googleusercontent.com/2Wd_k3JzPN_5kOhkfBMrzMni6PAELipVZ0VMN3U-tv6DBPyIWZDcfkHuGYgcR30xSf1ycVPFVH45kdWkU0TgutXoRkzRbt20jyFY9iVMqESiCOFcvQ63Z2AOF9-0-OgyGZa3RoF6HA=w1920-h1080" style="width:1200px">
+
+</section>
+</section>
+</center>
+
+<center>
+<!-- Band Description -->
+<section class="w3-container w3-center w3-content" style="max-width:600px">
+  <h2 class="w3-wide" style="font-size:50px"><font color="#f4dfdf"> <b>Osgur McDermott Long</b></font></h2>
+  <p class="w3-opacity"><i>We love music</i></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fuAE3U1NvOs?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p class="w3-opacity"><i>Enjoy the music and my photos</i></p>
+ </section>
+</center>
+
+<center>
+<section>
+<div id="mapid" style="width: 1200px; height: 800px; position: relative;" class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+<div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+<div class="leaflet-pane leaflet-tile-pane">
+<div class="leaflet-layer " style="z-index: 1; opacity: 1;">
+<div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);">
+<img alt="" role="presentation" src="https://api.tiles.mapbox.com/v4/mapbox.streets/13/4093/2723.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(56px, -91px, 0px); opacity: 1;">
+<img alt="" role="presentation" src="https://api.tiles.mapbox.com/v4/mapbox.streets/13/4094/2723.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(312px, -91px, 0px); opacity: 1;">
+<img alt="" role="presentation" src="https://api.tiles.mapbox.com/v4/mapbox.streets/13/4093/2724.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(56px, 165px, 0px); opacity: 1;">
+<img alt="" role="presentation" src="https://api.tiles.mapbox.com/v4/mapbox.streets/13/4094/2724.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(312px, 165px, 0px); opacity: 1;">
+<img alt="" role="presentation" src="https://api.tiles.mapbox.com/v4/mapbox.streets/13/4092/2723.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-200px, -91px, 0px); opacity: 1;">
+<img alt="" role="presentation" src="https://api.tiles.mapbox.com/v4/mapbox.streets/13/4095/2723.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(568px, -91px, 0px); opacity: 1;">
+<img alt="" role="presentation" src="https://api.tiles.mapbox.com/v4/mapbox.streets/13/4092/2724.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-200px, 165px, 0px); opacity: 1;">
+<img alt="" role="presentation" src="https://api.tiles.mapbox.com/v4/mapbox.streets/13/4095/2724.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(568px, 165px, 0px); opacity: 1;">
+</div></div></div>
+<div class="leaflet-pane leaflet-shadow-pane">
+<img src="https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" alt="" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(300px, 247px, 0px);">
+</div>
+<div class="leaflet-pane leaflet-overlay-pane">
+<svg pointer-events="none" class="leaflet-zoom-animated" width="720" height="480" viewBox="-60 -40 720 480" style="transform: translate3d(-60px, -40px, 0px);">
+<g><path class="leaflet-interactive" stroke="red" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#f03" fill-opacity="0.5" fill-rule="evenodd" d="M141.20355555554852,171.94704600190744a42,42 0 1,0 84,0 a42,42 0 1,0 -84,0 ">
+</path>
+<path class="leaflet-interactive" stroke="#3388ff" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#3388ff" fill-opacity="0.2" fill-rule="evenodd" d="M358 163L474 219L550 153z">
+</path>
+</g>
+</svg>
+</div>
+<div class="leaflet-pane leaflet-marker-pane">
+<img src="https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon-2x.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" alt="" tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(300px, 247px, 0px); z-index: 247;">
+</div>
+<div class="leaflet-pane leaflet-tooltip-pane">
+</div>
+<div class="leaflet-pane leaflet-popup-pane">
+<div class="leaflet-popup  leaflet-zoom-animated" style="opacity: 1; transform: translate3d(301px, 213px, 0px); bottom: -7px; left: -57px;">
+<div class="leaflet-popup-content-wrapper"><div class="leaflet-popup-content" style="width: 74px;">
+<b>This is where my folks live</b><br>Rossadillisk.</div>
+</div>
+<div class="leaflet-popup-tip-container"><div class="leaflet-popup-tip">
+</div></div>
+<a class="leaflet-popup-close-button" href="#close">×</a>
+</div></div>
+<div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(1.04805e+06px, 697379px, 0px) scale(4096);">
+</div></div>
+<div class="leaflet-control-container">
+<div class="leaflet-top leaflet-left">
+<div class="leaflet-control-zoom leaflet-bar leaflet-control">
+<a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a>
+<a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out">−</a></div></div>
+<div class="leaflet-top leaflet-right"></div>
+<div class="leaflet-bottom leaflet-left"></div>
+<div class="leaflet-bottom leaflet-right">
+<div class="leaflet-control-attribution leaflet-control">
+<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a></div></div></div></div>
+</section>
+</center>
+
+
+<center>
+  <div class="left-half">
+    <article>
+      <h1><font color="#f4dfdf"> <b>Dogs</b></h1>
+      <img class="mySlides2"  src="https://lh3.googleusercontent.com/CoMLcb8aOM2pOtiVhXJzZtuN2aLn1pVQcTxi6vsAkzUDnOpgwT_Y3V8YQDT7sDSZ8TswIY_gGo8M8CcfWf0mAB5YUKFAHfDImKW1A7Z6CLyuJu0oJbuZhcdArlN5o4eUUsQposZtWg=w1920-h1080" style="width:496px">
+	<img class="mySlides2"  src="https://lh3.googleusercontent.com/oZCoFTTz98V2rFA9Ptl5XIRZ2R0Jzl4xG_2hsVT6Ih04bNj_3etJaOBbwF1kbiU_v_gLmXdfWa2KS_wcOClz1xs8vfjKXvO4VCmCaZbsQYo2jonOgSBRhMaB5ovxygQhU6ZXQces_A=w1920-h1080" style="width:496px">
+	<img class="mySlides2" src="https://lh3.googleusercontent.com/piy8WWp3KLTO1F2j7D_iLPKlTIhTxnouv4-bbm6njPVCl4-db8oYNy76DyQ8YJ5dWML_QxG0u1u2uuKaAzG7nF-6Cre9ECUvVuIwMxyN0ZoBLXZIDAbJks8iSf2AcCqTj3aRluMV4g=w1920-h1080" style="width:496px">
+       </article>
+  </div>
+  
+  </center>
+  <center>
+  <div class="right-half">
+    <article>
+      <h1><font color="#f4dfdf"><b>France</b></h1>
+       <img class="mySlides3"  src="https://lh3.googleusercontent.com/TcTEwS9d0yLwRfAG5023LHyYV_sxMNl7wjX2jPcwWQBjQVjXKroPFAgoDT0M2f0S9dFLE1Yz2B-KY42HxNUvLJaov6-c5ikiqwwrTqlkLLHZ-LGuInnydfgbJnlND4hB6XPLOwQi1A=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/_RCq9zCuJ1uM1ZkmqkDqtZLn678po-P5kJTR-n6Rfw7ZEU6gqhT5tY-RvmuL-IdzUiVhpaPASsHSipoI4etEWtWHXTm6IRnE9-KBYY08SVhsnEsr_a71IauRPGH0hLMJFNEqWvDC9Q=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/tHMGBAP-5eTWdQEi180dixlRzg3lPHEBnF-8DjCaMeCNbzXTL9Qn9jXOnuN0DGjn8b5oOZHdYunwOnSwDEfEcrA8BZpmYfNuZmsQWOTzHS0GEBzTTp1-AWmiDQ16TmOjx50KuOU8rQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/AvWHTugrvnzrClRSWrUXThFF9I2_pbn2_wVB06jkjkr17f4eJyCX3_EKzu6gEykIcRyFvkrVOTacC_eYN_PbVwQAxq9iNbxuElB4u6wMnAhoCWeEyiVBqLNsPFp46qEg7Ous-92yGg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/5b5_4j7LW2tF6G331Oza3SqnrXjShculMfqZDBrV-onCBtLDnRrapczAILlCRLcjhVLyio8e6Lcmsmu982_qHLCeoYOOvumX6LI-BYkD1etR9_UJchVgawjrDFPGvgo9CA9UpxCp9w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/293vpCa5yvvBG68n6onXK4bmdl2aqqqgXVOtnjBjPxoiLBc6NFsl34Reko5nA6l0zTWMe36TncHih1Ht8O-O9usDQ-BvGjrLaIXK61yne_Bgyy9yLMA3CIuHeJ_CwZlcmkU5R_Uj0g=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/IJX8c-rU_m4MSFR1Jbbw-uO8oxRT0MNy9YmWpwEGpTqjqU8JWN_ptmEMyvkQGoXrzQNZnYqOkGZIBsVku7fTobg7zgvz99v6t1PxepXOMHvHWco06DX8Hlgvtr-7Dg7uNEUAHorhzA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/XZV6qcLVnf2aQU6-fB6rokWmYwQZ-B_JkSb8epr8KVM4ZrZNlP_TtlD2bItI6_ZYBPjWo7MqHzK0vh-uLCUbrvXpx80LGg5y649HLu2o1dPb_pWA1mR_UIGCZdAhS3xft5IHLgeeng=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/dnj4x1U1kYnnDfe2ArrmXdBDy8mSrtveTXYdhrRp0uddq7jrKMDdEf_llzL0Bl6yqqwRMVE_wZKzs5CyWtOP8ghN-ZohbQ7f3X9P4laFHIpXyymZ4uGFs3RqoTq_BeZHeK2qPK9_3w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/sC51SneVTCt335nrnwBKFTZhrWy_-QU2kZC0tURFH4PXPOi-nyNbMYvGPTWn4F2-61XpsG81WP7m2oBHJtcczuSB2auATvpRoLXdvBj-1ZRS-IEb5O2zGrxCl1RkQr9aWndrwzixzg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/bsiEP4ExX5plva-tH50O25M0UM1-h-76xS4wvddzOaRP7zA11QN-pO5qEvQG5S8lkED7F6pp0qCyG37pGjmtMaVnXyY8s47rSWQwNdMY_FwrnuNuB3gtEBg-sfPYe9UmyO9ek4z5mA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/1w-EcaPV8eVNgtXkrK3rRtKVH513p3zaGyQB6rlNrgCgXI2vD4_AiZ3ga_8Co5YNGepQ0IkskyjWdrzbul1b-CLXxq01REnoKTdZI_1OsO7wrPJKlUT-pXrSyXPjcOnmQHO_I6zoqw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/n3JgMQiqdGYhjfn9jilelMCHcHw7jDKpH2xhDiobm3LzjmzG1Zawn_8L1DZjt8rxCuMyGVjZCL5eYfzccuUW0fyf5v6sPIZ0KnrGY1eAvqHJJK_oFEqCVozfB3PNWysp_jgNiF1Z6Q=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/aEGHdz_K3nPjSgZ6AmkDzA0BHd91uEqTFgqt5eKQSwiKeAN1ixLBBwjfSwu_4JnJ-y2seZdMOoaW13xa5VIg4hayba95Huw4zWmUZerJCHBdI52R0NpyqNHhX6t-4VYCFhLnF9piZw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/yrGvaEkhEAcf06xSKnkjCCfaFZlUMPj7EGc57_bAhoNYN8KBO0gKs2kutGf4JMMXNuXFK8yZ4qDy6GCFmpCma3h7RHakPQesO67u0WDXygAjiOd0IsitqA9n_BzljfaJwG-cucDaaw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/00mc5Hbt7-_dkK0xFiRABbEe4glFMomJ0t-Nrkpn5qumsoeCPxCSvqlW3TmAiYAZX1P8xrIgXaZWChXZPCqp-CUUIM04d7T5KM33AVJKFhAXYmqhZhL_8XzEKQZUb1uGlT9x_oLZlg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/DZdGL6rqbVjtdwMNPlDBNKyJwATwR72y6GaGXbUbkeX85ER1s-zPo6lsjj4Jlm7epoH0mS3ksAe2Pm3SzGAOoyQ8jQCpc2edl-eDKMX6roZq_sOez5qY9Zl4_coM0P4zD_sApEQfgg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/nG2n3FdBCzq6hqNPGIREaWz9rG-b3WPRVJhCKowPPBtkv0PGI1aaxWOCyBjHBEes5BCjrjETY4t9mjO9e7l-M5Shm15u2yFnAc36q58GuyhbGV-xHSaxm9ZK6krOZ_9ykMroh3tDFA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/r45BVt34jLB01f5qVyV3vFMl7NNoAfnYC_sp2cur3b203lFA2Q0hlSEvrhuUVK58EQWwiA2LR7odMyQr9zc4ERSC8e_HXqqoo09MfKv9v6gK_0BkikUtBlSaQL6NgXPGgldDf1ETjw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/tnQPwHf0hJaBgLByvazLRflArr40t7YPVY8JmxsSeip2TNkPJm-APgsG1zglxYvhiOR-EIujbPv8CaJL7xMgHNwCD-1fPBigiqIH1YFhynk2yubRdaTErrnyoM6p8PfOuQV5WvYmPQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Vu4ymuQAT1ItvSENHe_ehVBAokA_Eq0I5Df5Djhe6TMIowCbnWNv0NN6UAy0UGj1aHIv647RDPTv328vaOfVmKkZtx6nQeC28C4YpZXlQVbFeDRWNmYYkTdb9o8b2EoxqHacOTWttA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/6TF79pySHhuyLTw8WIgfcEiTfd1bm03ezcAwhJvsKE4S0GUpCrhsv_uP9xRprkek22SeaEplc-UWZKDbMT7c9IjbqsqAqidp5GFHvZh_GBYbuwApCsJ5omBO4SMcsmG4a7GCQVAPJw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/UDz0trsKe8CUWkFvFMPp4sEqb0NWeVsoZx5-PdqYmaKXFD0yh3TDn5mVM_YzEjlN1kTb2eYEvNXHrXHgB7MTU8LHtFB3EvFhI2pAv9-eHcGBJ93WJSh4oJTJ7wB_UQ7iSIebSLV4CQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/ybDTkL9f1Gv81hWa4TpkyHkBNjSPy1hWpoNbHxrGsBcuPVwQAJFUgc27ikFpYAlm3HJseWuCp1OMc1sqPJgQUpLdYCRg8DXvS73ENEkxHsdKcxK_1vLMlYxYtspaAou9FemfyDchXw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/flp3cgtXlL_UImwTT6VFe0iaCDRwox2ct6jQ3h3HrVrwlvSW5Eq642-GYP2bOSnc5dL70HCjBP9slPt7NOA0rJa4YgBCypKWzQ7s_Ak6IAujvKlEmFbgH1zq7nH9AUQ5VeU17CRvfw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/XuPSCewVOJaJjGs3WHq4JJpzaRBK6hr9NMSzLJAQ7zbTaZLH4jROS00HKnOYlaERwVHrN9VlZD2rC3Mtb_bDDbfIbAY6ghzkpwmpzPAFCCQvtYyfhoNGwuMsoG5uBuivPRA-hJyf6w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/pzinyCehHR8Z3_r4khbYp6pxp_aF0mLEzppoPFRWUxu-Y2m13EuwdKIpvHayied0LZAYb-D2ZS7lgAOeQCaFQg6aiV1Aynf8YUndSMd2Re1XMI5HLdFHTgidzi1Qsi2cElOeHqmmyQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/5RhBbwDAqvXiX7lWW_kn6lk-cvCb-BtY9xX_VWMHL2JUUj_KRNGLmYGPlr54iKT0gzs9tKwOf9M5lspYxXJkckauiuNnLed6UCco8o02aNCMoAv2nwWvz18NK2W3eZx1Kn63hjFjVg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/hQDFIepQ1BSuE1AhsHqCYUKt8MNJRT8jEFXlDZPZrWeJt0PACuc2eebgrtBacIqOpo9He_V23XfbSveczxanTqH95jTs2aTw4YljXeM9QOzldnhk1h216qAtDgcOhFO5G9pfBPxJyg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Bir0z-eYh9hDDoErF8t4M1QgOexV6Pc9IQozbPY0-dhGTL81CmBaF0lZfxBVMSMWXfcATc3bCeaDmAVHmoyWJdxH-07c0d5JewvhWv3GDYCfjX0piFMEBcKDFWtjNnC8RK84rQcqtA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/mBXGaJJ0NFFEddBRXYSh6FVfzVtvut4SKsdg-heSD_qlEtatnwsS19Ho7r8hogkcHKw-HkT1rZ9fm4ZOpAYTALJ2JuuoDwxi2rckoRUIovEYYDD8fPuF-YSU5LidTSKIKzMLRHcp9g=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/lO3JCD4tG0SB2WxzNg1NC7mMhJmGrcKm1-VeimKkOkwu2GHz6Th-yEWZQL4aOvyN4rJAVUCzxJyTlt8xsiLeIpkRwNHjTfCJETN40BJlaTnX0c2tXuANTRyWwMzr2g51IvBkcyaO3Q=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/yFbZU-jwnxnhkzgElapp6IEak1hl0s7ksLI7ijhIvG2WCmAfeALF3lY8nNGdxdrfxVGz3jQNxserOFL-ERU5whvOdK0Jm2f7FyghuEdTUy0hFRnpSHDtinRSff0Jor4AVfr75bzdYQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/rlPSBdZM53f6Q7NKw1UlfMiCRJlNqSsS-xB2_6avadzgSZYEspgvPg-7sVPz4v0s1Q6n5CCKuzzuE6lInaVZUasDIKdXXYRmGxKclzCujyITgAJKAWZFR2OD-JLLHq4UGQCrHVpzHw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Zg2f5lzDiTk1rrsF7cqfCsnfYJpvy4oTKY2pxB_7MgVPm4cWbSel4P784zNZJNlnPBmZIYeva8CAnkG769WMhJtNtkUpat1NzdNBdZOc095Vmc6E4u56azZ7rfBctbVVOikvOcRCAQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/_VP2bMG05JNHRjiiloxEdGiZ8iDcpm7DnCKMJjKQbXZ8w7RN-sSYb6EpTnXqF8e6Lu7qwBvRodXzezzWT2FH-_wGb4z5YyeO_CYmB3dYas_JRUM0uwwlm3N1tfNPrmesFdAOj4g-2g=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/sy7EuorJMansG8iKTl9l_A0_ltfeI_OG0Mpu4NiX-z7YoX-xNHMPO6CkJTvV-EcHTMsTAiCW6rWj8FmJ9kqyIaC9rSv15uqoFfUwKbVBCssIKo3HsGE7b8y61HH-Ep2M1yKiv9Asiw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/qSALfVxFlmGf4jKHfVXeRnACOERSkK9hNuKLR6nnyUXQiCc90qarjzCd8Mzo1gFX5NCQ01YWsJp_bWOdLuXCdSqNeSUc2EViyeV67jPviwLiZkHnMivBmj6g1DiHrZVzEuaOEryXDA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/kx4EYuNL8xsvzaa_W7SzgoNqZFQ_DaivylLFlxNGbLWLv1ysio26VSJmGn-fJN7piboqudp6yW5vArnRrVKMc4Olw5JRZ5leoXn5Czgcn9ozobj3cykxmRDFz-8z7nqZbXhgGdflPg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/uJ9-zwJiqDEWrMcCTULODfjxxIGDoO1QsRo0nHplhFts0xd1wXjoYDw0dA5FveLb8-d7JrWfLgecpTYSREBiHQxV20Hnw3nFHdNLKHp6XcBtmlbztJACyU0eE0ESqrNppkXqADZjuQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/2RAdp00ydDLc-SzG4OdNu986Qxe34G_8nuJ8fSkPyfr_wyBGKuUgtYDQaOBsxDSKfbYZ4JB23UX5ali9pknVMjBbtxhGhPgV9yUM-TobvAG90IGA4NlO5gLAM-mff6Fq5OzgglEJMw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/njTjdIOrmf5NGjgh9dGjn3l1EkwMNXqivvM45vTEb-nNfTlWLov9-EqBsJa7ze0j2T2ODVaBzFJTznLwE4OTeAbJL7sSWt4PRB3GK59f6VNTzYFGviXiIzj934qpwN7MrzhgZ-Fqlg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/6sthzuAj-jmxtBE-HVCnfiq7_1nzvN_EzoQzp91MEfWOxDH6oIJ6_jr8apIllmKlwufmlZODPqhZgPiwKpo4VLxgb8PVBK1V7p7uG5a8AFcVWq53_2KJtbwCvcQrK0Y-yaPX1unF1g=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/6yY_YyRIz5zaY7Ym3lHG1l3qrs09JDrMf9gOeYipBc_N2cJgUq5iV2vPItTCzBVOOxRP0RJT1NaIbcvz2mxi7RgvoIQObtqH6F7WEIwUqyyD0oB1bJH8GqdBNoimJkPNpL0pUZgoiA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/eHVJ6ctCZ_NQHWSI6KUKwlrk4a394CHPXJGnujjHpINnz1VJvyFkBIrFlr2G19tlVC2XeSc_Y1WDSX5mU59Q8REE716p7BtVSQ6LWO0RrO0ZRtMTjQqS41cxaWZverXZPl6PTd4VPw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/O2K0DQb7fSoZfRVcYJN2k-NVwSCYw7UomtmXVuhpaZ68WBfJ5C7uqqHX1WCvPOHLeWNmQUAOgyB8_qz9dq06Dr7q1w1TWVzSyHjLmobipgZLSHwuBsUo1YQ1maSGbUYlQBtJS0o3-A=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Ou6frcGt2TXsW7srFD6DL14vQj0CBFYnfBdsthQazeRrFwD5xC8lEY-0MCfkFchyWz5-NQVcppZd3gpGh9qZZGYDJQDb6XWA9vSLf-bFGilo16Rb2oT3xhB7oShjOycGmIy-EHhiwA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/uhpOcyxddMBBQ1UrR3dSgwqETsxTfWgEsLL_zlCCQBdbKtmRSkqADYagyBaPHwEa9y5sTBspzUbn1l_sC_rC4zNbBCHaKBucwDMW1KJhOxcH8NVGNyVy8-gSKP4jJ4Bvkn0X1mZZyA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/RZI1GhY0tCLLsad9jabtJm6hikZRMl_MN6O6CvVAlaDy2W8Wcpk6tcSUFWOx6Cjp7EgM0MuzDQi0f9MpQfE6FKK5MChL6LNANW4XKu1Fduv9EukiREQhZF6L2KTrJAfQGRs-zIsNbw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/ueGjibgDCEI3IS6sAJkxaI_4i9GLqCp2oN3F5WTrPKjsdnSHOl9aCRrecD11naSwDeMjMEYYcedER7sT_lFBYJy_ClAJuODO_H0i_TlAh6vW4D2tkA6OM1JDjiIR_9Q5t47YUb_Tbg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/2p1SrYl6k7zw6mmVfftRLO37dV_BSmB51bXYf9EovY2YSEd9yGd7XQ9ZPIeFo1xEi-UklNDGB8Z4FD-HAEcqVLRMZbu0daIYbdXjpMOTZ9pNmWncF3c-AZu2tCQ1veo-qaQ3cRI2Qg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/srKK-YD0ze3gEwSxh2M8cW55KO7qAZP4iiW-1AfVPaWtrBavJ2kKqozGpmlslJT_qJbKhqzVqfF-NTuhwU_SxB-X7ytveTWDmiNIUqZ0ZSh9HlmupGNL6UzqLt-SfJQbz9hFWSmQmw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/bOzkguMcvuK7UgrALI7cbCfsnjEhcWtLmk-Ec3H6GcNL1ckVR0eIM-ureHej62IZvcmPPIvL4YqExLxAcmse9GTlWXiftdKEVvbi63lr_XM1qbpJD1ik4QtlUHARDIOiCGoC8LwRog=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/1Hj-zqlYswtIpVAhL6iNOagJwW92BRO_KMCdp9uZd4iScPYm3FkQt-qED4zG7nXH1UaRLXk4Z7w_V5e-TNjXa0CJH55i-R7PxWP0Hwm-3_r9_CJeNjAgT9L_yYxKoyNTXKoJspIeEQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/iv3HznzkA7_b4Pi1qEBkTxww8T2QKCIdmrHPdbyVOEjTOItUJnTIJUORYH1VMs5u3ZLFlIgA1CvQTRA_RNoZ63f2pGNFg8asueXRzGNaMjc4O8X7iXG7qqUizHDjMipBAbBCAt7GBA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/5FoFPHG0cRdM-ZVggFXFrF3n342DjemLS8SqHLguKFWxg1wgj0nz5UfiCkqMf42TKjmS71LSmNojAbWnzYoYYK7Qj2XkXaK7KYP9vy1JtIlegUQ_P9sxf2flIzeDgZTUCcVIlrPoCQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Qcu1CsdjMcvALLF8MXBg_ymioQ688CHRi2Kj06B07V8xL7yVxK7NZcW2P8sy6gSdbAiBHjUN5c65cFilw7xftXhuZ8tvijotNgdj7P7YqCUDzRfspSuIcwGI6GsDlunGof0lZt2w5w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/6LeyeyMP2tOKJ4alkj3-7A79am4UTBerOluxigQMVfAxEdoceBxuDmYk3Xdw9LSUur53puAUpA5KdiY-cmJBi3XJqZ5b2WPb3AK52OOxBI7-hLe52bbdlw7tlxWyEcrbedqSwbtP-g=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/ld6V5X1GLA4bmsdeGKhbn74b8g9GFiUSvMtdK_pil98Z498t76yDvtRSZvCYMHb0Taye6gKS8NrMheYZ_Iz-QxvBlYU66FTRz9tXQ-0CgSQxvPsdNFNeWXM4FclG4H1jXAXJxRppnA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/EHbKA7OL1Wz6IOTU6EPT61kucMVxBBrVx7jyltYyoBo0Qx0hcioNTPdXD82W1rmyD-oK2xLbVNoudBZM0x8i_EV571Wn2TXDFVIRU4Cvl5EAER2VS6cnaru0XTpCCjVwr42Z60_PMg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/vDRIqpeqqXx62Bo99H4q9xZuipPMKjg6-8DVRwGIGYzmNuEU5YDs6cinB0yBcRhDlzfBv2EiuYJ4TBvBi2kqVx6Pt7yrv_aaNFw06gjtU0dX4CkhajDdgaJfAkwwIjpbCcJqz8bLNA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/r2EmAEZAaPApStNUDqGWwhSmvC1_pf_FrPuGBtGuKvAojpxLzyVD587slotjjdjfMo-nK3IQdgyNICFaWtNNDvxL4pC2iTHMEi9G4GBaTrGOPih9ulZLKj1X6R0Pn_9Mkrfj7tbeAQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/TcAGyi7rS6rjMjg33-QAFc4nYTHMsK-Ua8uO1YosHDZZLCPXtJ81bRZe1Dh1G6W9Ln3_F9Q30mav7utsSSfnn3tIjD8XEhDW4W5DOKtiGaAVro0H3G2NdJ3ZVkCLSRWYdb7UfDcg0g=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/QPoCO9qs4z5Ht-GJrpv6SKYpBtjyT2kU0T0ciPNDg1bb16JAnm_3-flnsqeLvCKIrXj6QSMno7TWRA5G8UUWw2OtGF_K-Edmyyl1kjEUQBpK8jPH491rfFz5t1fiUbSWmbHVaXR0ag=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Y9f8pqn4hM7wOFA9kwhAtfEKehWEV0Xcbl_Q49RLka7c1O0XzlmPmzyT9nTYD1_NPpG_Qf5DEprNcFpUmv2rBEFCOKkNUR96TLAe7YLMVpQIqYNU_Rgiy9econgbF9cljw3bvV2_4w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/AWTJb1ovu_Bzw9tSw1OMQ7IDJmLzcezl0u1L0UoD6jTIXTrAFtD6ezlMe_PkbdpUV-OnglVwd4DHLOnVeAkSsSqIrVg1MA9cyCE_EKxgNMO1pF5AENecGD00IEg8aFsD1ZREgfunCw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/GyDIk5sdoq6xyKPFxhyGWtUs3dye6p_HV_LpCikzS38IVyO2IvWDv6RFydeeIoNg0c1M-L6YTXHzaskmSHzL_CXSHCw_xQ0xzQ5BhQ095hxSO8KpeHdW5HmN1MreOJcdB4EFJwwnvg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/1I8VnJUiIjLYycCnhhGev1YU7aQfeYtqwwO04W6kgxLGwXjTjbq7NhBVgnW8RMvo6zeaicSCqAQiBoR_tqIlUH7F0XmSbIcMUdSuI8i3t5h-XHtT0yA-SZksbaPd1XG_fzlHxo-Slw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/x3dcIOo-aQP2-s1_d0DboDTDD5Oo1-6Kc7-GuBqEv6kDmzPWVHKO5ulKupVwffRQtPPK1kFIH4MOHI38SaLNspCVwtVjwq63xRzYjLLcRCTodu4nANfC_3OwATBeDXDOcCHKMZ0bNg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/f0STlyko-kUR6VGutr-Nps6EcpOkANS8xwdg86B2w7eBtXsMhNcCZ39WuvAeMqpi4piALnRUJjhOlC2nk_xoMMt3CeRWwKN5jknTtevk8D5uooHPIAofitoQZaU2h4ny-Ak71qFJBA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/IAOT3gOHmgCde8sj1K4g4j6hBW6ki4HIpKbhsQeNhHezY8XA07DCbX6Jjy62c6KgwfoyYVX7uiuYOONH9bu0NZyv_ogGPfAvwQ54rV8xoCoio3mdqnb71oejCYHbBI-qtgo4AqvkjA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/FZ2anDeGa_PKgpjoDiHGtyDhRspwA_Eh45Ah4wesZOS6UjRu7hYj5HwVIDZP3R49iOTW-pTpVYTEUFtOIViuRTJhDKBDvnh48pwxW1awAqDZJLhYnI2ZysWe7kTTTVlXwuKLYrivCg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Flw6QUdzRLU2XJ_miuqsgrQH1Teqte7ETDYxGIVTishITNH_TKBX00tJ3zCppuKNGjP42bRMYn9DYP13EP5_w1dRxXPNatUbShhtnmaPJWNTIlFCUMddg2PRqRr0DKKrSJmSX1ZCeQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/PszkEjuubnLf6BTaoMvzPGvdxJ7JqqPyfE6zWljOHGFhaLByRvWMJG46XxDOaR2XhThdE4EeAa8WKqYDO5v-I8MbWG_SsjJIxrReAvyRrgX3HG8Ysw_KRhrRl9XcLa30HCgpcFXaYw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/9gMtmkSefStQAWxQei1ShY8BBbCjbiQ4W8BBNdNbCxGI9-GoYq1UdLkfr3KS8hMkT4ozse_C-SrudM9jlUbxU_gIr4GvBe7EzKvzmLEOPszCxo7ZqeAYIq5o3wLqphqNaMCDCylgQw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/NmABGIrFRWWw2oTfUzp4sfRie52FLeGiQ2U2IFC57QLmUWxiwRsk4PRMgLDqEcYASVeJX49mDtMDFFvxZKcigFjLdfjRHSAm9275ze-0XbFeSjFFZwTEqWCUvlO98CYZVwsthQY70Q=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/eB0lDrw2kyGKDWIym_XevORR_8SzN-T5B6w0lQadZ_4vySqauZtBCfXA06MqW-SR9tKe_L8tYWbALFyNcW1XfeeX6aDlnEikwR2MqO-J0dbnNbtX1y97Oqs8RHTEAms4GidsE6PaRw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/7Xr5k6L1DJSpfJ0hZq1Szf4NttrjLer4MPhWCiRvsM6Aj2X-PHxZmV5qdwhzfMp9EnkCUyUnanLOyAw0sJruJ7ZWe618RmE6Xm5BsUM8FcKJDA_dPJjnLBTb6whGJpbpi6gl963AVA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/SEkh6OIIQEVZLywD2mi5tdbEWPqOCSxebfT2_7nRH8PdeNMPC2O3gLSIRkpQp30Iorj2D5lU1mFeCTDp4OwlZrNBTx1PWNQE6-6HLCIgiI0riWcXsECvvglImc9LbOkPGZd1GmR8Xg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/c2-2lJEcrITruVapBUsGMN4nVCurFE1XxcolSu7N-oXqj8Y44883ZrK0iMsQ4W22-kp1cb-Z_QLdWD7Y5TnrRUsnk2WJlwCeIwnSXKvNKnYIlVMA_fFOcL5f2ZrfCnZNlx2kd1rkAw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/AieVGK1NNVFYbyZcE7q2i4ujgWYYzNNCbEnZFPumb4sLcLsp_cyYgpSXTss5oEmLxBHlBg2swQKgusaubfECp_RVzdPV1qRSq_zoYdhtbrrbirRoCr6zilWsNr6ha2LUijlPzKVD1A=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/W_JhEBB3oc5xtS0VzmRHzdwAEp7kcBrKJ-bfoxIufTG83oDXmWaypVIzSyt96voPBySDdkaOmXDBNtCsmdJl3Sos4SZcFeJMExAR6dPGIOz62gcnRsTMQ-aGcR6S1cZAM6EhndjwCA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/3xLlbzUSCaeFjUHe7sNsvTQE_lW-mWtGoDI92_0jRsqFtNtyrDli6FtS4Ar1kOWtit7rkeyAa6sRFweeXk5z66kAfBODqkxLacq3xrNtzJ8TWe9dzl1kjceKhENYDxPoTUKe2pKmMQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/g8voVYtD_mLAksa1K6tcS8q28pyGMF_veik0W-3PXsagDSHYMFkiJeXS8RHZkFwse5ZTGSn6U-VZ3x55CYFjguyO0-Zrw795BFMIfiOX7IlI4LbfBLLiE62Up_FqLQklKGtrIpQBEw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/7n-dari2zf-5X6VT1agYWBpcQVwTPsbOECq14gEocBGkTjw4By_pCZa9tP5ocEa_WdBCfUszvmmg0mD15Mb-dr6ciUh5t6XsPDC9K-HwZ_b9lLuR4PXT7qUzrs6wNSlGIPKGJuw1Pg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/-uZmYiDlCzUEgB4CeB1CKBUD_mlpjM9djT9zaT2FsS90A6eD6Ml997kpZJeAL9uBr65YWPknRRytL_duN27zcIotK9wld-qnZN5vKcnZ4ZWqJLhTIDUNqONtLD76EKiGeLw_nz4tCw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/ZI18YDse5SSUFxDCPpPbIo306K9kH_wDn8ERRqbriEhYiOeale5KWFcpFdTje9_JJsWvCivtJhOyWqY9-CLW0ZnjbP2y0svNwMsh4ZHTqABWx4UntVsnNU9QkTtflWQ92noDzSkSSg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Ych7XZKdolVzUzQISgjF1qkmFs29nTSpxh04u9PrxZomKAq71UeYir_uIaCjjprGjeyV2bH7VEYQoDOdbUbA13NNTy74FiycrZ1usboOX5rxrFbUm6qemkZbTLVVkv6hA1jF8VlChw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/_HGz_O5vOqQpfdBeh7H9Cz_J5ed3zh4wqTHvm3VZHcLWamfZu_Zh73-1gURfRIwlxkIay-crohotKAGoCr9kYTrEm8pxd0Y6DGUfCPhAxbxQ-17fu3crgKyr_38KE3Emj1VpDyb4NQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/pVQll0ltzrV-o2q5jlMUboudZPKMsWTgLnkWRfwbZCYfTIZILUxttlBrpdPJ4AFWHXcPNQTIvhNdImnM8MOFiI5tPRWCBFIB5Yyh4UGqlD7aJkVI1Zw9d1tEawxDJO3wh275DwjzJw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/fLRmmSbd7lgwQvwp_QJOrkRczfvffDto1fS4ifKCoW5S8Br79ofgV8xKjnjnkFXyt5bQ_0U1F_ZGQv70WzhCY5qGQSQPZWrV1IjgJfp0FBBDor7pLaCu21zH22eG_MVGfkfPyNVMHg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/FPLLYcTVdAYuP1MuzcsW7GLR15HhewvDUjPKLl4Zmx7KhOVRZZ-LCokGCS1a6w_UawpR1g6_jUlB2Rgob5So5euWdxZ2KoeuaOFG4MaFMzwjqsFubbEz-a83zG7BcA0Og3re1K56lQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/QyKt1MnA-95UVHxzE-44LcFeAxhPFkuHtrHDjFEs3QH79RK1KRu9dwaSyYlbHsjpgS8T2WcHcFG5ZyBn5Ydh69L49uQLMToYi3zXoG6FpYOMWXMg5YaqCqATZO5sqCwW1Z3lceaW8A=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/SRiPBB9VTbKAsBuh1RPH1nA8TukHej9RYgFvCRiEinVZw0dD6e5hWgJAXnWLAl280yj_c8sg0NGu0fHo3SpHmObBgc1wa7GRW_xmj3YwmiCKslaXguH82eeO_AG4KYP64H8QwDfUWg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/5ukGLKBbbWc6dQ4Oq5jF-WN3JZYaUkTOCwfB3CymZ83uum9hC9wkjnZtjXidsraIIdgSv1xCuYE-Wfwftg0qc7t4mdZc0fX2-AgKvhgK3LBlqoW7WTtxMmA5bnUITycKMd0CE6yUDA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/eClRSsAC6jFe4SpBFe64MdW_zUXs2NAWcZW57C4ag78ZrhMXaTH9dHr7CBlv2Tjur8xIETfIl5mt1h7D3kugco82L6wQIGOSvOkwaClXbN88E4IwwLOW06pRj93NkKZW02oUezEB8g=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/2qiIRj6n4LEPn81iZdtR7KfJc_2n0nqZgajE8KBSSE73LfEXPBILlHEUazez77bUpfu2ZV3EKHVKIIj75M89Mi3MlVCTb1QjIpVf0vDz4fU_jy_frCKMyCfRMtsEBJeamcA6_j6r2A=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/mzEVt45Y_c0pwO0vy5FaAJUcJ4yAzqIWTMxtl5pnhvrnLGwVdZvHrZ3zYh0w9QT7xpN9vYYqqcVRPp2haYMastLu-xEziPKOCkznI1Gj2q3vHbuqWe3OLN76gvHCn_YWGcG9AsnoQg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/0rWO-U8Vc62Ahh2oBfVzOQ6KYzlEuNCFE7-bQNtx5HLo1DFBuCcGPLbmyVLLe1yrbaKiSbgfSK3nN0AmDUroigSSl3QHB7lKo3c7m5jVn1i-wpSJ25r3MtTx78AXJW0sAfCNnFEutw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/ifYlODRrHDcvBafOdClF-IjveEV_XF2aq2VHFs3IJe2U49ZjYYGOpduA9gAEkyGxs_RpStY3BDRncZY8qtXrabWdtalwvEpM-AOK57RBK8E09jsdl9k098QwNilec6cu8yz_Xeb0nQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/R2j2Wg6iDIyCGdEVwNeP9qPeLyh2SXcM7qLlbzNxrJPC0p0HYlZzhZgU5IjQHnfMCINroi9TtzxlZ4UTSfjyJPH0p5q7smBB7641IJ4YDQUB2vwpnvGvOuRnGbHO-ybAeHF0krxW9w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/gP6d_xXbfokCdHvD6AzapFJkBr0XgoMjgYRzkJvafnob6aNiQWPV6L-mX0aEat76Ld6pfk6QG7Rxy2vS_Eh3J_zHdI0oOZiyfhL9I8bEt2ChK4hoRTb0vX5rEn1X8C4k2T3JrF8nww=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/03EjhZy9KRcfTFCB5SrfdbSa4cIP9_fGirylr9JfjcUVNUIGLozxz1fDQRlCDpVq4xwoi7O_DCXtV4qodqTAz4FtWlf51J_RzANdUBD6NU4WVNUZ8cxw1a-7jVfm-ek8DNavTA5CNw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/ls2yR7E_pfxTZOa43zp9ab0n2M2gr7ZTj-JdtU2zdrySQFeQxvgaspv-sfG_aKCcV9sCYawnluJZ0nN5Hx0NpPW0JB3HbCZNsPjpIOG88u6Bh2aOxGx8ZkRxSFuk5v2jBcFTKxVRyQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/wgjQ1sCty0DqG7xMQzYSb9TvhRBbGQZzDRWMbym4P_sit21iRqg4KMu6hjDYk2pTQODHz_IgdpP5-loD6Dk88j59EECScfl2dUdUmmmm-uap4tyrte_xdFhFun-_GGTTsJYNU0LCDA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/xn2HbNwYsHPtc4Obrdkhi2t-q3_fgn-ODyZBw8FOGa0CqsUvYqFDzNV8CcvfJNTWQ6GLoUhxvIb_20bIU0oDstZUe8cLZYBwH3jaJNURJjkDkx9C0KJ6cf0xxFLHP3X61jd01t3p8A=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/icmvUe5dqXwZax5WRIUahV-EJZYK76acmFDVO5N4OTgl_s8FY1e8KpbK3HBvSzwkj6r3YLdCEaAszcBbUS7a-erTdoovjM9jZbytTBYqwLMM7wcy5e-iOubSlS4EBmMaoh6wUwVwZg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/vKUX0VbrAWIXmefGVqwYw4eiYp0QXkTruOoMhhmPZHY2Ll3_MyiA5iFA39Tz4BF9lrowVYclkQ4Hde_iIhnH6VF2dduAPB6UW369Adsh0TAOKgL38ckJxPJqyEBITneiPW74Ipe6Pg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/0lYrZ03Z-myjQFK-adKAnHZF4RwLMWM74HTcNpQgd3eowPawE88aU4TVwjIDrq68F7t3LcM5VqW6VFzsg-_buU-5LEUCiHXFv2ohnt768oujQDyDIc39CkcbIpRlO-IHoAizqYHDuw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/5XDv531ieUAXBzkWy8yhpEGi8vDoBpynks73VvqmM-3SK_w-NyhrhaPH-zEnQuV0MBXBPV1twWjgvBRNfE9i1M3rPbYrCUJ6gCwqpYiamcIVjwVJdy3zLTYfMHYx40lwGj0xUi_q6g=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/MWjV6Vh6r_xobX_jrLztQXCUTeLMSTRWgALzGejKY1jNdCg2742aKyz6lPC1r5Vm7E_1MiWbCRVESa6Q3mmHzdkQB0BFyu-aUKJxGZvXNHJQAx19psigN_s40cW3Gpha0RRXfHQtqg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/g33pEaFw6K-_l73htVYe_Y43VVT9gldavIXearbBYzj8iXyCJv12DVI40cvGA3KZkRVcGX497pw0ZB2b2FEdaeZDSJw2W32Zwz5h7CQXldZpDwHX_NGVrQO06_3BYNaEvHVGsf-IVw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/WXgIuG1C_Vww2VxPSTjBpOACWcA13BzNnvqK1-fIOMirAeEK_GCpnHNDN74MsuSgSy4iJ0An0f7d23XTRc3V-PukOPF125Ng6TfnimUAz-ZFG5yOqa4prtC6U3RadY48wx_VnYOJPg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/NYIb7xwtOhCtvOVY5w3O1VD2g1dGHtA6xplsT0QcUxsC0sqs0wT3WQc6GPE1rbwMV34-H93wFBeDvbCWrw2uif8aa18Q3iw3XyBctn8REUR7sdwuiUWw0StC_p_tjmZUwrU1Gi7g-Q=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/y1UDViMW1kEBjot4mWtU-ZhrSAklI46RL7b3LRO42WNBx7K6Wg6xrZasVfUdCzlZMWWYdjbtbqTnqAZETNqyYBmH6SKLEw309hyjum0i3tWwX664yNR8BTMxvqQFAE__EZmMpCf-mw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/WpBEgeEXvQti6Wrb8k5HSl0drlK8uaa6j69HmDpR-uwnROWujAq0XZxce1Br4L0e1m0doBjnfiuqZHnYSuQlbtOsj5CY4kh9a3TQkFqHm5FXeFPTdLotyjErOZ2gGGsMkt8pOD9HVA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/eHj9wbLFZuyB9Y78janSpGZFtvaJ_pXxiGQAPQFKDCmsZo0NOWH0y8npfGnobL4hxRS0BXT743ccf-b_7U9slq1Xj64S7g2y5K4sxJQXdUkgsqveQiETrO-X_SwRrwqFavVuUwQgZw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/frG4Zzo0kFOP2V8o_rHgR6LRXJNVVeJo_LLcP2DxrVlPh-FHWCv_TKE9JyWlW-wYsyqqvTF4pX_Z1qwOnlyfSyE8Z9OJ1CIdOPcimuOHR7rQ33OIHu0ICbFm2Sy503VoKKlK7epj1g=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/4t3CivSTx4Z2kvifGYXCYV3xPy_BgbKCAn-z3dpBzrlIqKuoQud3_jQXh7hmID_J4qrlE3JoqHlDcWr9QeL_4Rza1C6ClWnWXAXUXoSCkOKbJ7ebsCHkPrQ3wYIFb7BetvcvY8BSDQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/JWQEg9Bp0gcrdPY8teIicCohYCfd3D5m2LfoRlFektTVYWawxE9Bci0FGLvm9ZbmMO1704MuxzcJz_pW1zdNMSta2tS32yyK2kJ4v4IKVn69NJY68JQVw-dl7ADdbKfna8cXQDITzw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/6NR-fIPFHIFMiiERfouvxT0NL-_Jz9E1pgHARe5n0j1jk7Y7TKwAGiCOtvA2xdUxXFqI5XDSvMtmawvUEQ4W5CQzlCuYeH_KXwKeZCThv_d2LdC7fqntB1-DGsWFZITGByeesy2SgQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/5b8U04PMfe2eZNXsoXwXE86ryfYCLN6aUAGckfHNKERL5BiQIH2SqiCe6ghWGA8UXzYzCmRgC2GmPASZHrPzmc-PlWVoeW7eXLrkDsbHkq4zzDhsnrcSQu0yvVvLD3Ghas_SGx18dQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/v5RyaCf1uMt86kGUFU2X1O2xT-woBHCyFRJvJgzqMjH8le_iVGNiktqlYV2YTcw8dpLbbGPR4N3VSZwVKN9gDGxrILqNSO03LLqJBNeBWQIV8tQ3VTSuxf2hzVb3_GPCHrsa5UfKnw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Z97WL2nG2T4JU9ndJG96xKhsexLXWWVBZHJHjBWwLMuy2VXLiIqYTFxKGe7QdOwWA4SP5Y22GXfiAZwVXPlsicFDWswuanSEaAsEyJQKBzH480LzUSBPZ1lxoVWJvvI_o7PPGjPE0w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/sLqJpmTp357BzU01tcqXn73QRXxlj29_EHOPew6E7v79ICgj9g2LVA7ZQOq5qIjAVvoLzia3DvmWnvi-IUWRNtbwAqkm5I4ix2NKE1b7zU5-htUnO_AH00yoG1WbKhcNZ6wihgelVg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/SRCGkrK7EM2msn-i8VVQOIRBLpWahqY8foJjKCYzfYJ1Gg-nXziRslOosJHhKb3UB49TNEE1nr7Wr2dg8A19_zODCFLD09ycD3DunhIOlb1fdyPY5NlQY33PJAa_SOspBT5UO65G0A=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/LlNNH4jGatGLcsygS0_L0LKhfrb5fc3N3opKQGy2PO63dKURZmUt5-1VUf-yQ1Aljjw_hR-JgH5CrB-f7Y_5SDxJAWn7FlbWiX4yXr0bGoxHaVrhQG8DBLcdJdOxASOytHOndNwC6w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/KImmqtiSPOe6JuM61AvZz0Hbpg5goe-lxem_X2KFYsoJ482ZINWhpVfRN7d5_OdvKkIky5ahy4lif-HFOnfXHASGuj_4_5IGe2eaRrLpHNkaWKZ2DI07Nss74_WXFHoNaVcZ1GCkTg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/PpXRQZIlK__-Gzj0eW6oA-U1SmcHdnPMZcF8rxgq1IGHa8rQkDbyQz9s39-a2tOOs53Isl8V3zG4vplnnQYyg-DG_0Cmx705phap_1fTxk11qPC_jGT8DmMmNkvWrktD-CH6E-VQ8w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/HeUtkt2ywIYqhjURz2ziMmNLVoTLIocwtsRblIw6dJ042w7mQjvgkIPVC9W8hhx5t3jwKDNuLoZL4dFK5FAmDjIMcAFLladLilcnBReczVX0wgLssqdujdbJ72oZNs0NQB3PS6Af-w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/7TyzbWQt9kqMwx9Yur8jRw_9J_2G_NUk8JzlfewE3Exq0uUFD1je3WPyzdZs_ISXBRMYhe__ADLzKox14DlD3h3pVSDsp3DdZCPNCs8ccz-Fc667VK3jlvTw3KGOkj8dIDKXLabn2Q=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/mhlA18U4yWwLQRzStsX8s9hkR-ZAGuEu8R1olgeDj4RrFS5cKKvBP0ojzKQjNF0Nx1mG5SBW4Bsje0r4L1WuWRhqr1W6mz1ACeC7VSx52t7v6fLAD5GkvCZhIKIga_Jl9XCBYdZaxg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/RFlca6xIrKLRltN5SvC8LMkhhGnp4AnZenpPKSAr_os6JKvhCyzAcmC2IJ7FjnKxVzFD6UhBgds4ERhiiss02RwbtXuoln4xa47gEUa0K1SXouInt4QxDFuXOS1Msk-E00uqfFacUg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/pVLyAO-Y4la2ldJ9J_phau4HKBJNrepu7F7KkMurtIwokMNVp6Dc_ciB__jRV4Q7U7OmZSseBGsPejdYjIsZFHDzwIASBxbcOnosaxorRW7BPFo9OalwfX_yGTCHN3g9P2R-2rcxCw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/1SsB1PjJlcalbeh-qCMZdE8b52ySS2KrcN3HTlTWrCSn8UkewmgNcHNlPvkRpKfrvF3shC0E6lkplf3cA7x0lUifX93P8vq6xrFsVlkyw2KtVx3PDzgRcfPd8tPIU34ETljm9jcJwQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/SDh_a5FgMuGuAO-hM3rUmSxoIirM0iJ8hYhn5-r5judePN5Vbe8ajSj4KMA92C6If7JznvKyCMA59AhX3ou6K95_27S-_Omgw3ofH9VHSsLILtNhzIpFkMBd71xmd_ZJy_g2-PLlxg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/v7BnS9YXqPAik_3FRJ-4yCnjE7ty_LbMHWgZ38kd2YZ5EcVZtFCeitetwLfb0TftNT3QAt-YhG1N-hELfS9xiW7xUTvMbNwCePrEY-sNX10qo3L60a-y3uAhpmimKoVLGSP0AkbhjQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/0lJ447oj00p7RlQO87EM5TbGryXc5JNDOKK4iuZUM_c-tGW1m5kUWpwbZy_2Gnh82-XewxD3CD-ZAq5Ft3djr3sflqqbGkec1UGUmqa6PifW3tH3NcuPU2ojBWQoXRT7L2Tl571-HA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/sUeYMoIyfXlYQkzrt3WgGJnT4voiPMxg8R_XsnURSYtuMf6ucirNGR2Aj_1IJHbBfLBp0VkoqOaii_Jdz0-Oz7_NzHf9JXOuPBHxtO7fU-UN97BrMTxhfwVavBp8LX1xh4K2TeUuQA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/FtKt7dJgALc6lHRB2VfpfiPR4v9kynoGIgP6cKApFo0fnZJ3uo-niap37jbi0wUNcG8EYuZx8IG1wCX2SiNkE_Mgsmj1iuNAVyNTl5l57OFUt-ut_6bcwEQnyM8QGKIFyjKmFtX0SQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/LUY8hrBUDV_eY8i4ZxvSArnhYTJGWkCGvMzZ5AObeL48gkelZXXaNmdgUKr0mLdg_xyy-9i9-ZIRLiLon-gy3QJmby6gBFJTayHFrvc46w_Z2WlSfQpzJciR7z3ISXimokWiZqxxfg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/9-bVt8qMj9vfRNsNbCaxVDxUdyF0x0MRUH_lur-Cr-x9imp3B-q3BQpkDQDIIA6Lkg6tosTZThwDFK5Bt1onjVYQfTX4euunhGYHYZKfuf44BO3HNhvxFcLzatoY9zajEwhx5xK-qw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/QKvx5FKU9RpBvhwcyEpp8ynFUZeKIAVuSsItx5OaKpU8i5zHPFcQnDTo3xMM47__LotdwMVMgbO6OgoNkvTznXcOYC8BHqoAAoNIsEvPF6N7lNVOnWrtjPXaRdL1HeDL72h9KsXhMw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/EiaZCX1tmn91z3u65yQV93lffSybohkTjg3r4wV-MNVHT-h8rQoVrS5xr54vp0y72-iqmUEQqYFzexG-xujnUrlPxft8xDFHdZq6q8Phnm_cFmuD6eYqHXYsnOgKgwZeAxNLK4DzdQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/5QWfJm0DHLwXKc7vqTjplo5XOp6aNaBySO-X-W7fwKo-j3Br_kaOsGnf1DSlpTpI1IKZGI3VOy4Hyg9KDuU1zbj3eyHHS2qJCNHLn6ve2Ax5FpUQZllHY-bKrPcUP8RAE0yQLztlxQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/dF9dXgaCSAq3qGuZjbuH0T_Hdv2AW36ugtMgitorRWp6EaLjoYoGA5Hvcqd2IG7HwpAVwS4307bLv4ACevPGH-Ls9qgy8VgxswMKHB0Cp8F21BvEsH9ZLJOCWZLVrQHnfPPtyx4ECg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/_rF8uqp2gOpkpLO1ymAH_8-3I8dJ8B_q_C7F_LHWtnFEZVvHl4gsp15xmRkjMBpBXkWvSY_1KcQUKfgkjr_ZxBW71Gdmn-5oI5t9oFGJY_-Bpu6Tt2W95DHlYr5Q-G_CablwMo-gjg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/POzhD5gKhPT0Tsn47R3k9xRM2rDTOfbmYF2k2FHKXAZM7ppZ84grN6-Ke_FKzr6Nb1Y3rs0sXs5MQgfABOI5pCUMyynMRENIe-NcqohS1p0g7hnyvakqwlMQnG1d-2J_PenJIDMVLA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/BHcJtG7RbUqQPozZfzBKW96MZky2Co70wSW7r7sP_ambtFa7sJ9siKXFPw28ZrwF6GJdPSXvlDLb7_OJ8f-fDC5hqQ8ktlLj9EAfX1mKNgfWZCUeu5r91T2w87jG5FOK8RrInJ4pvQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/2JMmgt1tQ15iljDOq17JxdlD0S6PpAXrS2XdX2AMR2kRmNBwH6VoEJyFiGIkbity7xEqEcPdJBevpuvQDCw4PO2Yq9Arz_fJ6cPLwyPf9mlPZn117Rzba1PA1Z6JeIVZFD43gktxKQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/e8lsEa3rZLWNT9JHn9y2z1dtL29nL_maDxbuOSTUiB6m8HFDSH1z8GzB9jN6Ba2uSvtZHKpve9uoBI1a5a3yZyxdl8IpkIK28u1Yj6ubAPHzfgpe9gE1GQ_H-dcdekMmXE9e9Z4IVA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/TPjtsuFkbHzt4Y-3oGErB9VE0rd3qWZIkQPAsXqQTdk32cLQPJE9CvBI5xW-AbrZ4xeXrKSdSQj1AImjBJPtm3yjzCA2G9SViQ88A0Uon_xbjAMCe9HTgn85TuhjKtpOxGwiRJFWwA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/3H6LG0hOY6D-1cRd06TGYDCFehLBlthJSteVwP-AoxI6TUSv7sRLODTJwSe2yc2RqnO3BMN4VABtwmv02oUb9T3zIqTRfRyb-FI6_kzLTqeL5TyBcoBrQaV0yd3Bc_jfrmoTxSgOdw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/MWl1diBuqB6i6Jgl9GTtLo2OtT38thUDr0qFkvplZiECTYbRH5Pc-lJfKeW2AQR3xoFV4OJEIxBjrqaw6TDpJx-bvYh5WJzSjQKbJiM4EjOhhAhmm6oTypOo1dk_uRVLv2p30raDog=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/loezktPKNVc1NmlB5KdoTYK2w__QsHCxswda2-jWgkmpu8ASrREMwZi14UKn_7OOPqpBB2Eqk8IN4StBU9N6tvlIvkO3-F98Csf8mD3osBishYToe1SwoFQulLnufW2DvSK3SR0Xbg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/1W_Fl5GukIWY0mXBlmyxputs9WMpqk3nD8wjGHg_ajKUmotXF9QILgDBWv8iM99hazg0rAemMb5Fgxoiz_ztuyziaGXTCBchys8WlgjBJ0GWchuEIJWpxcf0jTzBvcONH-QRWFyuKw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/oJI-1kL2jhbSUins0ge7vqnO6q6XWpPtVWcm-hn785mtzfEB9668_ihbdXlHadNthUUm1otXcgLAjulb4Bdr1Gy7P7LqdRZD3MNlvKeUayFMVUxrHvPmXGrnJZT6UCE0moFw7UbPtg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/RkRTVKxg-_O0F-p3Hy-YowvV82NtfIpkSkS9_Xdz4F7u8iuSmfZgiw8ZQfcr0C7gmk3lHF49bhcEphefNOrvmoy8bedemSYtLL_B4rGWHBrUB8gOT2NN6kXaBqNJwEU0kWOPodSUiQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/acM6ocIkbJ72Onv9DTdWTk7H3aaWneiQRtOAXbjdAdgx1FZPBqxGKpyNZoljJi3SFl60d4-gBqbOT9FncylyqVBQQ38X2xdrwRFDeRwUwIxvyB2dLhoG4tbUvMKtNH9m4iH71PBtSA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Pzv7I84gi2lMEMT9eVjxCRlizPvVdpcNPxN43llAUS0TFkAYKmGF-fbk9O0vkVY2wW7ViLMZ45kzzd-K4S0ZjI4n_7EVwZ8VRpZGzpNorRuMx05s28oLlBe0aSAzRifkx4qqO17ITA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/t7aqEdC7Zvixe2ih0561jgYdmJwUCOInEG37lZfSmjEzThNnxS4wCA2p1doyAss-0DyNkaC-EyLoEy5ZNeapNLTAR33jVuf39fZemiscxqTJ0nTqLmZR4MffaiM7yVLDTKLOhmspNg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/3bgkH8Yt75QvR4OMYukMavMWDOIfTbIkaWyCZJ-A6Xd7AQlTCF8QRneqArK96z-PgjNZL3EpG96xJpSPoxtWdvVk6PXTqr6lC5rUyDdK2JpN9NFDsH7y2rcoeSzt5TwB033Sncp2mQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/yaWjiYD0gi3OjGvSBWSUKtf2fMinmt91YcdsU-dS1v6kt3arP-VdnVVd9NW0MEz_OwuvgCAEjyb212NMqnAsaIgQQS9SJr6laPZxDkmuYhtgtr59an_me2xWpwD_ZOZ_-so3ipklVQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/zJRcV-tu_jB_0i53DF6SjOo5MlqcvpTLAwTayyopSNieoHJDIbUVE4XN4PhPGvjSLGzvDyZfPDmrSYQRuUO6Ome0Cl2YRFZUha9xpIKIYnCGvWFqux8rcwtrtrvDnxPdEFEY_wVE2w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/RFfHnHdhQPgEAUF6Wqwp_nxmjKZLUxVLsmGYl535KN82V4uxHTNwaNlSjUKHnA0X2itnGvxItBwOATcMrUia04i0rExluNYPEdA4Okv9rhQJ29xBIeSxxZj2MhgKcuXhMiga6dfqTg=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/tlJb3r-GE2lvqT84s_glc6nDnjup71OtSixNqEu49SpKB46Lzoxa-c6wtsQY0cRm7Fr3QC4fA3fgMcdE3MtBvzbDze9_OEyCRKYV2eFxGN3YapnrHiRsFETkG_hgtkKCFpZrNzQQhQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/lFjpYIN-xChqSarjC3xHs59nWNbGNp5fm6xjxiey-rFviQ4PjIrcCL6kiXIHBqmZXRWpdv9CWegVtiy5FDG2fpBBp8lg9EK5ZVfU4qVvvBBzTf-ru_D0Z3IQiAbGmRAE6OS9ytmvvQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/ISIeyirz3jhO8AQf6ubkYoVIWu5VVtB5iefrBpy76LSGYJJhalM3wPG8l7AP1QH_f4j4D4UEK3zEZ_BOrxuarcqf3R8B5_Ken1j1CduCSLv2yxVpFksKV4iSvGjzfPgKfR30e8UneQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Vhi5NthF44KhEREfPorkArniFSs7Uz170Mng-N_7LFk1WuUdqS4Bpt4huK_kREyIz2s6vJrY669yhcmjIEpK_76jow5pTfjSgmDBID_Rmf1bK81mtrbAPjcex252XVgJhyjw2iX5hw=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/ZoALXvNd0aMS7fvpvv_P16HbQIJCn5UQXvrzyzFm_RnEqQwIofyeNCSRkwI9Kc4OJMvJ5dwXVQxg-yeVE4Yo0xrSpiCKUdDICecxxnbxQ0psH3z-LAGhpMV9zPmVPDiIPTU9AkLt3Q=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/Ru-A8pqOcp4LRfacmVpn0nGxYpcv1w5ldrCX9N7HLgF7jkv2XfkRHJjIAubglDiiwgaJa20JG4DLv_QbmI4bSxvS2t_Q4YQXxXyUwI5fle1Je5CuBeF2GQfqKBzvG2RoOw4wQO5RiA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/DyntAAcTsdEa6BCj65PaZO3vRW6cI7Y0AaNL5Vwq8m7IrnZtK-YyI1MmFNEQKa1gsoKCErljWL4jI8UQvB-u4aTuaxsFdXo_MFDCIpLyMraX2PrhVd5Xsxb12XCH0mMmw3XZELuw6w=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/x9Ywczp4BuxfdseK6nAYCijRpeBt_QZcbyKBqMBWF16fdl7gb01bvp30aFsdvohPj0vNfgoB1Rk1lIYy2O9ZMin7pLWxnRsUuCufUCOjEvcd0I_5HE-T0NzyjxS8P3bo4CFTCXoMsQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/OK6FSw1tg-5WwM8RrOIsDmzigJwA3pivUeaoP983SO44sgWDJS6EXr_tSQZ01n2r3OLJm2cEDA4UWoGg3MRfe0vsUiPoMmqFw0q0Y3yRDmX1No9ZiAqcfaEccqVBz3wSNFyto5hYFQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/FnoM9PdcFb-mf3SurBurO-5qB-donLHnhdykbovl-TOVUpMhxN_4VX5rvebLhSMTfJVSVuzoLA5kbGs8Uyy3yXiTmSIO4d13DgiggsGVQ8M9_SfFq0TihphuiF7qMaUXtsPfgtFJnA=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/ucS1WFIOj2uOPiejd8mGjPsHTVxYkClxt-hexsSrwuclpJ6N9kb2Z2brrisiBun6Eh_Pa3wo4PHUUzeh4XrskOF63ukQhhEV2ZLWPZJu737LOO7R4WAnxS4TwBUWsG5C06OG7XA_hQ=w1920-h1080" style="width:496px">
+  <img class="mySlides3"  src="https://lh3.googleusercontent.com/0Jkui7DnDUEI-0bSNEE1745tQ62f6izXOUXR06UBenEiAYfv3gLGcrDGZo9d5Jt-y7pcu1v8MY6h1nH6P3KnYxuIik3Jy3Z30f79PghflUFi27jORXd6rFpQfQfZ3eh_8bTBGCl6SA=w1920-h1080" style="width:496px">
+ </article>
+  </div>
+  
+
+
+  </center>
+  
+
+
+<script>
+// Automatic Slideshow - change image every 3 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}
+  x[myIndex-1].style.display = "block";
+  setTimeout(carousel, 3000);
+}
+var myIndex2 = 0;
+carousel2();
+
+function carousel2() {
+  var i;
+  var x = document.getElementsByClassName("mySlides2");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  myIndex2++;
+  if (myIndex2 > x.length) {myIndex2 = 1}
+  x[myIndex2-1].style.display = "block";
+  setTimeout(carousel2, 3000);
+}
+
+var myIndex3 = 0;
+carousel3();
+
+function carousel3() {
+  var i;
+  var x = document.getElementsByClassName("mySlides3");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  myIndex3++;
+  if (myIndex3 > x.length) {myIndex3 = 1}
+  x[myIndex3-1].style.display = "block";
+  setTimeout(carousel3, 3000);
+}
+
+
+	var mymap = L.map('mapid').setView([53.1424, -7.6921 ], 10);
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+	L.marker([53.564064, -10.15089 ]).addTo(mymap)
+		.bindPopup("<b>This is where my folks live!</b><br />Rossadillisk, Cleggan").openPopup();
+
+	L.circle([53.564064, -10.15089], 500, {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5
+	}).addTo(mymap).bindPopup("I am a circle.");
+
+	L.polygon([
+		[53.564064, -10.15089],
+		[53.564064, -10.15089 ],
+		[53.564064, -10.15089]
+	]).addTo(mymap).bindPopup("I am a polygon.");
+
+
+	var popup = L.popup();
+
+	function onMapClick(e) {
+		popup
+			.setLatLng(e.latlng)
+			.setContent("You clicked the map at " + e.latlng.toString())
+			.openOn(mymap);
+	}
+
+	mymap.on('click', onMapClick);
+
+
+
+
+</script>
+<div class="footer2">
+  <p>Footer</p>
+</div>
+</body>
+
+</html>
+
