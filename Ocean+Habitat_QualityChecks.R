@@ -29,11 +29,12 @@ filespt <- files[which(grepl("pt|Pt", files))]
 filespy <- files[which(grepl("py|Py", files))]
 
 for(j in filespy){
+  setwd("~/ArcGIS/Projects/Ocean+/Ocean+HabitatUpdated.gdb") # identify the gdb for the data layer 
 Hab <- arc.open(paste0(getwd(),"/", j))
 
 
-Dataset <- arc.select(Test, fields = "*")
-SpatialDataset <- arc.data2sp(Dataset)
+Dataset <- arc.select(Hab, fields = "*")
+#SpatialDataset <- arc.data2sp(Dataset)
 
 ###### Run quieries 
 Red_Flags_Present <-  droplevels(Red_Flag[Red_Flag$ISO3 %in% Dataset$ISO3,1])
@@ -65,8 +66,8 @@ colnames(data.frame(Dataset))
 ## chose based on unique combo which columns to remove for disolve. Type column names in the select section
 
 
-setwd("C:/Users/OsgurM/OneDrive - WCMC/Data Management/Quality_Checks/Ouput_QA_reports")
-sink(paste( Hab, ".txt", sep = ""))
+setwd("C:/Users/OsgurM/OneDrive - WCMC/00_Data Management/Quality_Checks/Output_QA_reports")
+sink(paste( j, ".txt", sep = ""))
 
 
 
@@ -94,26 +95,30 @@ print(numericZeroValue)
 sink()
 }
 for(j in filespt){
-  Hab <- files[which(grepl(j, files))]
+  setwd("~/ArcGIS/Projects/Ocean+/Ocean+HabitatUpdated.gdb") # identify the gdb for the data layer 
+  
+  Hab <- arc.open(paste0(getwd(),"/", j))
   
   
-  Dataset <- st_read(dsn=folder,layer= Hab) ### instead of "Py" insert a unique pattern in the dataset you want to examine 
+  Dataset <- arc.select(Hab, fields = "*")
+  SpatialDataset <- arc.data2sp(Dataset)
   
   ###### Run quieries 
   Red_Flags_Present <-  droplevels(Red_Flag[Red_Flag$ISO3 %in% Dataset$ISO3,1])
-  Incorrect_ISO3_present <- droplevels(unique(Dataset$ISO3[!Dataset$ISO3 %in% ISO_List$ISO3]))
-  Parent_ISO_Present <- droplevels(unique(Dataset$ISO3[Dataset$ISO3 %in% ParentISO_ISO3_relationship$Parent]))
+  Incorrect_ISO3_present <- unique(Dataset$ISO3[!Dataset$ISO3 %in% ISO_List$ISO3])
+  Parent_ISO_Present <- unique(Dataset$ISO3[Dataset$ISO3 %in% ParentISO_ISO3_relationship$Parent])
   
   Overseas_Info <- data.frame()
   for(i in Parent_ISO_Present){
-    Overseas <- droplevels(ParentISO_ISO3_relationship$ISO3[which(ParentISO_ISO3_relationship$Parent == i)])
+    Overseas <- ParentISO_ISO3_relationship$ISO3[which(ParentISO_ISO3_relationship$Parent == i)]
     if(i %in% Overseas){
       Overseas <- Overseas[-which(Overseas == i)]}
     Overseas_Present <-  Overseas[Overseas %in% Dataset$ISO3]
     
     Overseas_Info <- rbind(Overseas_Info, cbind(i, paste(Overseas_Present, collapse = "; ")))
   }
-  colnames(Overseas_Info) <- c("Parent_ISO", "Overseas_Territory_ISOs_Present")
+  if(length(colnames(Overseas_Info) > 1)){
+  colnames(Overseas_Info) <- c("Parent_ISO", "Overseas_Territory_ISOs_Present")}
   
   factorNAValue <- NA %in% unlist(sapply(data.frame(Dataset)[,c(which(sapply(data.frame(Dataset), class) == "factor"))], levels))
   factorZeroValue <- "0" %in% unlist(sapply(data.frame(Dataset)[,c(which(sapply(data.frame(Dataset), class) == "factor"))], levels))
@@ -129,8 +134,8 @@ for(j in filespt){
   ## chose based on unique combo which columns to remove for disolve. Type column names in the select section
   
   
-  setwd("C:/Users/OsgurM/OneDrive - WCMC/Data Management/Quality_Checks/Ouput_QA_reports")
-  sink(paste( Hab, ".txt", sep = ""))
+  setwd("C:/Users/OsgurM/OneDrive - WCMC/00_Data Management/Quality_Checks/Output_QA_reports")
+  sink(paste( j, ".txt", sep = ""))
   
   
   
