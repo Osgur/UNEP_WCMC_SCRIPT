@@ -31,7 +31,7 @@ arcpy.SetLogHistory(True) # C:/Users/bbest/AppData/Roaming/ESRI/Desktop10.2/ArcT
 lwd      = 'C:/Users/OsgurM/Documents/ArcGIS/Projects/GADM_EEZ'    # local working directory
 gdb      = lwd+'/GADM_EEZ.gdb'             # scratch file geodatabase (LOCAL)
 rwd      = 'C:/Users/OsgurM/Downloads'
-eez      = rwd+'/World_EEZ_v10_20180221/eez_v10.shp'      # Exclusive Economic Zones (http://marineregions.org)
+eez      = rwd+'/EEZ_v10/eez_v10.shp'      # Exclusive Economic Zones (http://marineregions.org)
 eezland  = rwd+'/EEZ_land_union_v2_201410/EEZ_land_v2_201410.shp'     # EEZ plus land (http://marineregions.org)
 gadm     = rwd+'/gadm36_shp/gadm36.shp/'     # Global Administrative Areas (http://gadm.org)
 outdir   = rwd+'C:/Users/OsgurM/Documents/ArcGIS/Projects/GADM_EEZ/Output'                    # output directory
@@ -56,11 +56,11 @@ arcpy.env.overwriteOutput = True
 arcpy.env.outputCoordinateSystem = sr_mol
 
 # select
+arcpy.Select_analysis(eez,     'eez_mol', '"Territory1" LIKE'+"'%s%%'"% country)
 
-
-arcpy.Select_analysis(eez,     'eez_mol', '"Country" = /'%s/'' % country)
-arcpy.Select_analysis(eezland, 'eezland', '"Country" = /'%s/'' % country)
-arcpy.Select_analysis(gadm,    'gadm'   , '"NAME_0"  = /'%s/'' % country)
+arcpy.Select_analysis(eez,     'eez_mol', '"Territory1" LIKE'+"'%s%%'"% country)
+arcpy.Select_analysis(eezland, 'eezland', '"Country" LIKE'+"'%s%%'"% country)
+arcpy.Select_analysis(gadm,    'gadm'   , '"NAME_0" LIKE'+"'%s%%'"% country)
 
 # get administrative land
 arcpy.Erase_analysis('eezland', 'eez_mol', 'land_mol')
