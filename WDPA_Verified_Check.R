@@ -18,14 +18,20 @@ library(shiny)
 library(tidyverse)
 library(png)
 
+lu_CountryNames_Jan2018 <- read.csv("C:/Users/osgurm/OneDrive - WCMC/00_Data Management/Look_Up_Tables/lu_CountryNames_Jan2018.csv")
+
+lu_ISO2_ISO3 <- read_excel("C:/Users/osgurm/Downloads/lu_ISO2_ISO3.xlsx")
+
+ISOdata <- merge(lu_CountryNames_Jan2018[,1:2], lu_ISO2_ISO3[,1:2], by.x = "ISO3", by.y = "ISO 3")
+
 Path <- "C:/Users/OsgurM/Downloads/WDPA_MASTER.gdb"
 ogrListLayers(Path)
 
 #######Read in the data layers######
 
 #Public
-WDPA_Py <- data.frame(read_sf(Path, layer = "WDPA_poly_Mar2019"))
-WDPA_Pt <- data.frame(read_sf(Path, layer = "WDPA_point_Mar2019"))
+WDPA_Py <- data.frame(read_sf(Path, layer = "WDPA_poly_Jul2019"))
+WDPA_Pt <- data.frame(read_sf(Path, layer = "WDPA_point_Jul2019"))
 
 #Restricted for China
 China_NR_Res<- data.frame(read_sf(Path, layer = "CHN_restricted_Nov2018_NR"))
@@ -84,6 +90,6 @@ Verified <- Verified %>%
   group_by(ISO3) %>%
   summarize_if(is.numeric, sum, na.rm=TRUE)
 
-
+Verified <- merge(ISOdata, Verified, by = "ISO3", all.y = T)
 
 write.csv(Verified, "WDPA_Verified.csv", row.names = F)
