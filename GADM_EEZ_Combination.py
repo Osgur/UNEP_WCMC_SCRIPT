@@ -170,3 +170,127 @@ for fc in sorted(arcpy.ListFeatureClasses('rgns_*_mol')):
 # copy to shapefiles of rgns_*
 arcpy.RefreshCatalog(gdb)
 for fc in sorted(arcpy.ListFeatureClasses('rgns_*')):
+    if not arcpy.Exists(fc_shp): arcpy.CopyFeatures_management(fc, '%s/%s.shp' % (outdir, fc))
+=======
+	sr_mol = arcpy.SpatialReference('Mollweide (world)') # projected Mollweide (54009)
+	sr_gcs = arcpy.SpatialReference('WGS 1984')          # geographic coordinate system WGS84 (4326)
+
+	# environment
+	arcpy.env.overwriteOutput = True
+	if not arcpy.Exists(gdb): arcpy.CreateFileGDB_management(os.path.dirname(gdb), os.path.basename(gdb))
+	arcpy.env.workspace       = gdb
+	arcpy.env.overwriteOutput = True
+	arcpy.env.outputCoordinateSystem = sr_mol
+
+	# select
+	arcpy.Select_analysis(eez,     'eez_mol', "ISO_Ter1 = '%s' Or ISO_Ter2 = '%s' Or ISO_Ter3 = '%s'" % (country, country, country))
+	arcpy.Select_analysis(eez,     'eez_bey', "ISO_Ter2 = '%s' Or ISO_Ter3 = '%s'" % ( country, country))
+	arcpy.Select_analysis(eez,     'eez_imm', " \"ISO_Ter1\" = '%s'" % (country))
+	arcpy.Select_analysis(eezland, 'eezland', " \"ISO_3digit\" = '%s'" % (country))
+	arcpy.Select_analysis(gadm,    'gadm_Sub'   ,"GID_0 LIKE '%s'" % (country))
+
+
+	# get administrative land
+	arcpy.Erase_analysis('eezland', 'eez_imm', 'land_mol')
+	arcpy.Clip_analysis('gadm_Sub', 'land_mol', 'gadm_land')
+	arcpy.Dissolve_management('gadm_land', 'states', ['GID_0', 'HASC_1', "NAME_1"])
+
+	# create theissen polygons used to split slivers
+	arcpy.Densify_edit("states", 'DISTANCE', '1 Kilometers')
+	arcpy.FeatureVerticesToPoints_management('states', 'states_pts', 'ALL')
+
+	# delete interior points
+	arcpy.Dissolve_management('states', 'states_dissolved')
+	arcpy.MakeFeatureLayer_management('states_pts', 'lyr_states_pts')
+	arcpy.SelectLayerByLocation_management('lyr_states_pts', 'WITHIN_CLEMENTINI', 'states_dissolved')
+	arcpy.DeleteFeatures_management('lyr_states_pts')
+
+	# generate thiessen polygons of gadm for intersecting with land slivers
+	arcpy.env.extent = 'eez_imm'
+	arcpy.CreateThiessenPolygons_analysis('states_pts', 'states_thiessen_%s' % (country), 'ALL')
+	arcpy.Dissolve_management('states_thiessen_%s' % (country) , 'thiessen_mol', ['GID_0', 'HASC_1', "NAME_1"])
+	arcpy.RepairGeometry_management('thiessen_mol')
+		
+	# get slivers, which are land but not identified by gadm, intersect with thiessen so break at junctions
+	arcpy.Erase_analysis('land_mol', 'gadm_land', 'landnotgadm')
+	arcpy.Intersect_analysis(["landnotgadm", 'thiessen_mol'], 'slivers')
+	arcpy.Merge_management(['states', 'slivers'], 'states_slivers')
+	arcpy.analysis.Union("states #;states_slivers #", r"C:\Users\OsgurM\Documents\ArcGIS\Projects\GADM_EEZ\GADM_EEZ.gdb\states_mol", "ALL", None, "GAPS")
+
+
+#	# get regions out to eez as full regions offshore
+	print('eez_mol...')
+	arcpy.Intersect_analysis(['eez_imm', 'thiessen_mol'], 'eez_inx', 'NO_FID')
+	if (arcpy.management.GetCount('eez_bey')[0] != '0'): 
+		arcpy.Merge_management(['eez_inx', 'eez_bey'], 'EEZ_Out' )
+		arcpy.Merge_management(['states_mol', 'EEZ_Out'], '%s/GADM_EEZ_%s.shp' % (outdir, country))
+	
+	if (arcpy.management.GetCount('eez_bey')[0] == '0'): 
+		arcpy.Merge_management(['states_mol', 'eez_inx'], '%s/GADM_EEZ_%s.shp' % (outdir, country))
+	print(country)
+#	arcpy.Dissolve_management('thiessen_eez_inx', 'rgns_offshore_mol', ['GID_0', 'HASC_1', "NAME_1"])
+#
+#	# rgns_offshore: rename NAME_1 to rgn_name
+#	print('rgns_offshore')
+#	arcpy.AddField_management('rgns_offshore_mol', 'rgn_name', 'TEXT')
+#	arcpy.CalculateField_management('rgns_offshore_mol', 'rgn_name', '!NAME_1!', 'PYTHON_9.3')
+#	arcpy.DeleteField_management('rgns_offshore_mol', 'NAME_1')
+#
+	# rgns_offshore: assign rgn_id by ascending y coordinate
+#	arcpy.AddField_management('rgns_offshore_mol', 'centroid_y', 'FLOAT')
+#	arcpy.CalculateField_management('rgns_offshore_mol', 'centroid_y', '!shape.centroid.y!', 'PYTHON_9.3')
+#	a = arcpy.da.TableToNumPyArray('rgns_offshore_mol', ['centroid_y','rgn_name'])
+#	a.sort(order=['centroid_y'], axis=0)
+#	a = recfunctions.append_fields(a, 'rgn_id', range(1, a.size+1), usemask=False)
+#	arcpy.da.ExtendTable('rgns_offshore_mol', 'rgn_name', a[['rgn_name','rgn_id']], 'rgn_name', append_only=False)
+#	arcpy.DeleteField_management('rgns_offshore_mol', 'centroid_y')
+#
+#	# rgns_inland
+#	print('rgns_inland')
+#	arcpy.MakeFeatureLayer_management('states_mol2', 'lyr_states_mol')
+#	arcpy.SelectLayerByLocation_management('lyr_states_mol', 'BOUNDARY_TOUCHES', 'eez_mol')
+#	arcpy.CopyFeatures_management('lyr_states_mol', 'rgns_inland_mol')
+#
+#	# rgns_inland: rename NAME_1 to rgn_name
+#	arcpy.AddField_management('rgns_inland_mol', 'rgn_name', 'TEXT')
+#	arcpy.CalculateField_management('rgns_inland_mol', 'rgn_name', '!NAME_1!', 'PYTHON_9.3')
+#	arcpy.DeleteField_management('rgns_inland_mol', 'NAME_1')
+#
+#	# rgns_inland: assign rgn_id
+#	arcpy.da.ExtendTable('rgns_inland_mol', 'rgn_name', a[['rgn_name','rgn_id']], 'rgn_name', append_only=False)
+#
+#	# buffer
+#	for buf in buffers:
+#		print (buf)
+#		rgns_buf_mol = '%s_rgns_%s_mol' % (country, buf)
+#		buf_zone, buf_dist, buf_units = re.search('(\\D+)(\\d+)(\\D+)', buf).groups()    
+#		
+#		if (buf_zone == 'offshore'):
+#			arcpy.Buffer_analysis('rgns_inland_mol'  , 'buf', '%s %s' % (buf_dist, buf_units_d[buf_units]), 'FULL', 'ROUND', 'ALL')
+#			arcpy.Intersect_analysis(['buf', 'rgns_offshore_mol'], 'buf_inx', 'NO_FID')
+#		#elif (buf_zone == 'inland'):
+#		#	arcpy.Buffer_analysis('rgns_offshore_mol', 'buf', '%s %s' % (buf_dist, buf_units_d[buf_units]), 'FULL', 'ROUND', 'ALL')
+#		#	arcpy.Intersect_analysis(['buf', 'rgns_inland_mol'  ], 'buf_inx', 'NO_FID')
+#		else:
+#			stop('The buf_zone "%s" is not handled by this function.' % buf_zone)        
+#		arcpy.Dissolve_management('buf_inx', rgns_buf_mol, ['rgn_id','rgn_name'])
+ #                                                           
+	## project and calculate area of rgns_*_mol
+#	for fc in sorted(arcpy.ListFeatureClasses('rgns_*_mol')):
+#		arcpy.Project_management(fc, fc.replace('_mol', '_gcs'), sr_gcs)
+#		arcpy.AddField_management(fc, 'area_km2', 'FLOAT')
+#		arcpy.CalculateField_management(fc, 'area_km2', '!shape.geodesicArea@squarekilometers!', 'PYTHON_9.3')
+
+	# copy to shapefiles of rgns_*
+#	for fc in sorted(arcpy.ListFeatureClasses('rgns_*')):
+#		if not arcpy.Exists("fc_shp"): arcpy.CopyFeatures_management(fc, '%s/%s_%s.shp' % (outdir, country, fc))
+#	
+#	#clean out workspace
+	fc_list = arcpy.ListFeatureClasses()
+#		
+	for fc in fc_list:
+		arcpy.Delete_management(fc)
+#		
+	for fc in fc_list:
+		arcpy.Delete_management(fc)
+>>>>>>> 5a6256f19e47156a157e4be8b2139769151e2092
