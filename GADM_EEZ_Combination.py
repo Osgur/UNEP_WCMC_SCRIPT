@@ -24,6 +24,7 @@
 
 # modules
 import arcpy, os, re, numpy
+import pandas as pd
 from numpy.lib import recfunctions
 arcpy.SetLogHistory(True) # C:/Users/bbest/AppData/Roaming/ESRI/Desktop10.2/ArcToolbox/History
 
@@ -33,19 +34,39 @@ gdb      = lwd+'/GADM_EEZ.gdb'             # scratch file geodatabase (LOCAL)
 rwd      = 'C:/Users/OsgurM/Downloads'
 eez      = rwd+'/EEZ_v10/eez_v10.shp'      # Exclusive Economic Zones (http://marineregions.org)
 eezland  = rwd+'/EEZ_land_union_v2_201410/EEZ_land_v2_201410.shp'     # EEZ plus land (http://marineregions.org)
-gadm     = rwd+'/gadm36_shp/gadm36.shp/'     # Global Administrative Areas (http://gadm.org)
-outdir   = rwd+'C:/Users/OsgurM/Documents/ArcGIS/Projects/GADM_EEZ/Output'                    # output directory
+gadm    = rwd+'/gadm36_shp/gadm36.shp/'     # Global Administrative Areas (http://gadm.org)
+outdir   = lwd+'/Output'                    # output directory
 
+# Set ipython's max row display
+pd.set_option('display.max_row', 1000)
+
+# Set iPython's max column width to 50
+pd.set_option('display.max_columns', 50)
+
+Countries_Gadm  = sorted(set(row[0] for row in arcpy.da.SearchCursor(gadm, "GID_0")))
+Countries_EEZ = sorted(set(row[0] for row in arcpy.da.SearchCursor(eez, "ISO_Ter1")))
+Coastal_Countries = ('AGO', 'AIA','ARG')
+#Coastal_Countries = ('ABW', 'AGO', 'AIA', 'ALB', 'ARE', 'ARG', 'ASM', 'ATA', 'ATF', 'ATG', 'AUS', 'AZE', 'BEL', 'BEN', 'BES', 'BGD', 'BGR', 'BHR', 'BHS', 'BIH', 'BLM', 'BLZ', 'BMU', 'BRA', 'BRB', 'BRN', 'BVT', 'CAN', 'CCK', 'CHL', 'CHN', 'CIV', 'CMR', 'COD', 'COG', 'COK', 'COL', 'COM', 'CPV', 'CRI', 'CUB', 'CUW', 'CXR', 'CYM', 'CYP', 'DEU', 'DJI', 'DMA', 'DNK', 'DOM', 'DZA', 'ECU', 'EGY', 'ERI', 'ESH', 'ESP', 'EST', 'FIN', 'FJI', 'FLK', 'FRA', 'FRO', 'FSM', 'GAB', 'GBR', 'GEO', 'GGY', 'GHA', 'GIB', 'GIN', 'GLP', 'GMB', 'GNB', 'GNQ', 'GRC', 'GRD', 'GRL', 'GTM', 'GUF', 'GUM', 'GUY', 'HMD', 'HND', 'HRV', 'HTI', 'IDN', 'IND', 'IOT', 'IRL', 'IRN', 'IRQ', 'ISL', 'ISR', 'ITA', 'JAM', 'JEY', 'JOR', 'JPN', 'KAZ', 'KEN', 'KHM', 'KIR', 'KNA', 'KOR', 'KWT', 'LBN', 'LBR', 'LBY', 'LCA', 'LKA', 'LTU', 'LVA', 'MAF', 'MAR', 'MCO', 'MDG', 'MDV', 'MEX', 'MHL', 'MLT', 'MMR', 'MNE', 'MNP', 'MOZ', 'MRT', 'MSR', 'MTQ', 'MUS', 'MYS', 'MYT', 'NAM', 'NCL', 'NFK', 'NGA', 'NIC', 'NIU', 'NLD', 'NOR', 'NRU', 'NZL', 'OMN', 'PAK', 'PAN', 'PCN', 'PER', 'PHL', 'PLW', 'PNG', 'POL', 'PRI', 'PRK', 'PRT', 'PSE', 'PYF', 'QAT', 'REU', 'ROU', 'RUS', 'SAU', 'SDN', 'SEN', 'SGP', 'SGS', 'SHN', 'SJM', 'SLB', 'SLE', 'SLV', 'SOM', 'SPM', 'STP', 'SUR', 'SVN', 'SWE', 'SXM', 'SYC', 'SYR', 'TCA', 'TGO', 'THA', 'TKL', 'TKM', 'TLS', 'TON', 'TTO', 'TUN', 'TUR', 'TUV', 'TWN', 'TZA', 'UKR', 'UMI', 'URY', 'USA', 'VCT', 'VEN', 'VGB', 'VIR', 'VNM', 'VUT', 'WLF', 'WSM', 'YEM', 'ZAF')
+#Coastal_Countries = [y for y in Countries_Gadm if any(substring in y for substring in Countries_EEZ)]
+#arcpy.Select_analysis(gadm,    'gadm_landlocked'   , "GID_0 NOT IN ('" + '\',\''.join(Coastal_Countries) + "')"  )
+#arcpy.Dissolve_management('gadm_landlocked', '%s/Landlocked.shp' % (outdir), ['GID_0', 'HASC_1', "NAME_1"])
+#arcpy.Select_analysis(eez,    '%s/eezwhole.shp' % (outdir))
+
+
+
+for i in range(len(Coastal_Countries)):
 # set these variables
-country = 'China'
-buffers = ['offshore3nm','offshore100nm','offshore1km','inland1km','inland25km']
-
+	country = Coastal_Countries[i]
+	print(country)
+# set these variables
+	buffers = ['offshore200nm','inland1km']
 # buffer units dictionary
-buf_units_d = {'nm':'NauticalMiles',
+	buf_units_d = {'nm':'NauticalMiles',
                'km':'Kilometers',
                'mi':'Miles'}
 
 # projections
+<<<<<<< HEAD
 sr_mol = arcpy.SpatialReference('Mollweide (world)') # projected Mollweide (54009)
 sr_gcs = arcpy.SpatialReference('WGS 1984')          # geographic coordinate system WGS84 (4326)
 
@@ -149,4 +170,3 @@ for fc in sorted(arcpy.ListFeatureClasses('rgns_*_mol')):
 # copy to shapefiles of rgns_*
 arcpy.RefreshCatalog(gdb)
 for fc in sorted(arcpy.ListFeatureClasses('rgns_*')):
-    if not arcpy.Exists(fc_shp): arcpy.CopyFeatures_management(fc, '%s/%s.shp' % (outdir, fc))
