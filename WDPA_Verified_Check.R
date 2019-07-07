@@ -21,11 +21,15 @@ library(png)
 Path <- "C:/Users/OsgurM/Downloads/WDPA_MASTER.gdb"
 ogrListLayers(Path)
 
-ISO2 <- 
 
 CountryNames <- read.csv("C:/Users/OsgurM/OneDrive - WCMC/00_Data Management/Look_Up_Tables/lu_CountryNames_Jan2018.csv") %>%
   select(c(1:2))
+
+ISO2 <- read_excel("C:/Users/OsgurM/OneDrive - WCMC/00_Data Management/Look_Up_Tables/Regions2ISO3.xlsx")%>%
+  select(c(2:3))
 #######Read in the data layers######
+
+WDPA_Stats <- read_excel("C:/Users/OsgurM/Downloads/July2019_National_Coverage_Stats.xlsx")
 
 #Public
 WDPA_Py <- data.frame(st_read(Path, layer = "WDPA_poly_Jul2019"))
@@ -116,5 +120,9 @@ Verified <- Verified %>%
 
 Verified <- merge(CountryNames, Verified, by = "ISO3")
 Verified <- merge(Verified, Points_Poly, by = "ISO3")
+Verified <- merge(Verified, WDPA_Stats, by.x = "ISO3", by.y = "iso3", all = T)
+Verified <- merge(Verified, ISO2, by.x = "ISO3", by.y = "alpha-3", all = T)
+
+Verified[is.na(Verified)] <- 0
 
 write.csv(Verified, "WDPA_Verified.csv", row.names = F)
