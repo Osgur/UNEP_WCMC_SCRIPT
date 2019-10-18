@@ -1,0 +1,14 @@
+#Run the following in the cmd window to combine all csvs into one text file which can be read into ArcGIS Pro. The output file will be where ever you rand the commad from in the cmd line window
+copy <Path to folder storing CSVs>*.csv all.txt # combined.csv renamed to preference
+
+ArcPro Process
+
+1. Read in txt file from the code above
+2. removed headings from csvs #It reads in headings so in ArcGIS Pro the headings will need to be removed sql querry binomial <> binomial
+3. Used function XY Table to Points
+4. Intersected layer with EEZv8WVS layer keeping Country name and ISO3
+5. Intersected with a a_polybuffpnt layer keeping WDPAID
+6. exported All points and Protected Pnts layers to txt file and read them into the attached Rscript
+
+
+
