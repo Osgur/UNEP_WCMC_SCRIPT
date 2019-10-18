@@ -6,7 +6,7 @@ from numpy.lib import recfunctions
 
 
 # Identify the Countries that have a coastline please note, all countries are in twice as the loop seems to be only working on every second run through
-Coastal_Countries = [ "ABW", "AGO", "AIA", "ALB", "ARE", "ARG", "ASM", "ATA", "ATF", "ATG", "AUS", "AZE", "BEL", "BEN", "BES", "BGD", "BGR", "BHR", "BHS", "BIH", "BLM", "BLZ", "BMU", "BRA", "BRB", "BRN", "BVT", "CAN", "CCK", "CHL", "CHN", "CIV", "CMR", "COD", "COG", "COK", "COL", "COM", "CPV", "CRI", "CUB", "CUW", "CXR", "CYM", "CYP", "DEU", "DJI", "DMA", "DNK", "DOM", "DZA", "ECU", "EGY", "ERI", "ESH", "ESP", "EST", "FIN", "FJI", "FLK", "FRA", "FRO", "FSM", "GAB", "GBR", "GEO", "GGY", "GHA", "GIB", "GIN", "GLP", "GMB", "GNB", "GNQ", "GRC", "GRD", "GRL", "GTM", "GUF", "GUM", "GUY", "HMD", "HND", "HRV", "HTI", "IDN", "IND", "IOT", "IRL", "IRN", "IRQ", "ISL", "ISR", "ITA", "JAM", "JEY", "JOR", "JPN", "KAZ", "KEN", "KHM", "KIR", "KNA", "KOR", "KWT", "LBN", "LBR", "LBY", "LCA", "LKA", "LTU", "LVA", "MAF", "MAR", "MCO", "MDG", "MDV", "MEX", "MHL", "MLT", "MMR", "MNE", "MNP", "MOZ", "MRT", "MSR", "MTQ", "MUS", "MYS", "MYT", "NAM", "NCL", "NFK", "NGA", "NIC", "NIU", "NLD", "NOR", "NRU", "NZL", "OMN", "PAK", "PAN", "PCN", "PER", "PHL", "PLW", "PNG", "POL", "PRI", "PRK", "PRT", "PSE", "PYF", "QAT", "REU", "ROU", "RUS", "SAU", "SDN", "SEN", "SGP", "SGS", "SHN", "SJM", "SLB", "SLE", "SLV", "SOM", "SPM", "STP", "SUR", "SVN", "SWE", "SXM", "SYC", "SYR", "TCA", "TGO", "THA", "TKL", "TKM", "TLS", "TON", "TTO", "TUN", "TUR", "TUV", "TWN", "TZA", "UKR", "UMI", "URY", "USA", "VCT", "VEN", "VGB", "VIR", "VNM", "VUT", "WLF", "WSM", "YEM", "ZAF"]
+Coastal_Countries = [ "ABW", "AGO", "AIA", "ALB", "ARE", "ARG", "ASM", "ATA", "ATF", "ATG", "AUS", "AZE", "BEL", "BEN", "BES", "BGD", "BGR", "BHR", "BHS", "BIH", "BLM", "BLZ", "BMU", "BRA", "BRB", "BRN", "BVT", "CAN", "CCK", "CHL", "CHN", "CIV", "CMR", "COD", "COG", "COK", "COL", "COM", "CPT", "CPV", "CRI", "CUB", "CUW", "CXR", "CYM", "CYP", "DEU", "DJI", "DMA", "DNK", "DOM", "DZA", "ECU", "EGY", "ERI", "ESH", "ESP", "EST", "FIN", "FJI", "FLK", "FRA", "FRO", "FSM", "GAB", "GBR", "GEO", "GGY", "GHA", "GIB", "GIN", "GLP", "GMB", "GNB", "GNQ", "GRC", "GRD", "GRL", "GTM", "GUF", "GUM", "GUY", "HMD", "HND", "HRV", "HTI", "IDN", "IND", "IOT", "IRL", "IRN", "IRQ", "ISL", "ISR", "ITA", "JAM", "JEY", "JOR", "JPN", "KAZ", "KEN", "KHM", "KIR", "KNA", "KOR", "KWT", "LBN", "LBR", "LBY", "LCA", "LKA", "LTU", "LVA", "MAF", "MAR", "MCO", "MDG", "MDV", "MEX", "MHL", "MLT", "MMR", "MNE", "MNP", "MOZ", "MRT", "MSR", "MTQ", "MUS", "MYS", "MYT", "NAM", "NCL", "NFK", "NGA", "NIC", "NIU", "NLD", "NOR", "NRU", "NZL", "OMN", "PAK", "PAN", "PCN", "PER", "PHL", "PLW", "PNG", "POL", "PRI", "PRK", "PRT", "PSE", "PYF", "QAT", "REU", "ROU", "RUS", "SAU", "SDN", "SEN", "SGP", "SGS", "SHN", "SJM", "SLB", "SLE", "SLV", "SOM", "SPM", "STP", "SUR", "SVN", "SWE", "SXM", "SYC", "SYR", "TCA", "TGO", "THA", "TKL", "TKM", "TLS", "TON", "TTO", "TUN", "TUR", "TUV", "TWN", "TZA", "UKR", "UMI", "URY", "USA", "VCT", "VEN", "VGB", "VIR", "VNM", "VUT", "WLF", "WSM", "YEM", "ZAF"]
 
 # Sort so the countries are in alphabetical order
 Coastal_Countries = sorted(Coastal_Countries)
@@ -82,129 +82,138 @@ while  i <  len(Coastal_Countries):
 
 
 	arcpy.MakeFeatureLayer_management(r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\BaseData.gdb\ne_10m_admin_1_states_provinces_updated", "ne_total")
+
 	arcpy.MakeFeatureLayer_management(r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\BaseData.gdb\eez_v10_updated", "eez_total")
-
+	arcpy.conversion.FeatureClassToFeatureClass("eez_total", gdb, "eez_total_undis")
+	
 	arcpy.env.extent = None
-
+	arcpy.env.workspace = gdb	
+	
+	
 	# Select the EEZ that is primarily associated with the Country
-	arcpy.conversion.FeatureClassToFeatureClass("eez_total", r"memory", "eez_imm", "ISO_Ter1 LIKE '%s'" % (Country))
+	arcpy.conversion.FeatureClassToFeatureClass("eez_total_undis", gdb, "eez_imm", "ISO_Ter1 LIKE '%s'" % (Country))
 
 	#Select all EEZ that aren part of this country
-	arcpy.conversion.FeatureClassToFeatureClass("eez_total", r"memory", "eez_Sur", "ISO_Ter1 <> '%s' AND ISO_Ter2 <> '%s' AND ISO_Ter3 <> '%s'" % (Country, Country, Country))
+	arcpy.conversion.FeatureClassToFeatureClass("eez_total", gdb, "eez_Sur", "ISO_Ter1 <> '%s' AND ISO_Ter2 <> '%s' AND ISO_Ter3 <> '%s'" % (Country, Country, Country))
 
-	#Select the NE boundaries for the Country
-	arcpy.conversion.FeatureClassToFeatureClass("ne_total", r"memory", "ne_Sub", "adm0_a3 LIKE '%s'" % (Country))
-	arcpy.analysis.Union("eez_imm;ne_Sub", r"memory\eez_NE_Union", "ALL", None, "NO_GAPS")
-	arcpy.env.extent = 'eez_NE_Union'
-	arcpy.management.SelectLayerByLocation("eez_Sur", "WITHIN_A_DISTANCE", "ne_Sub", "100 Meters", "NEW_SELECTION", "NOT_INVERT")
+	#Select the ne boundaries for the Country
+	arcpy.conversion.FeatureClassToFeatureClass("ne_total", gdb, "ne_Sub", "ISO3 LIKE '%s'" % (Country))
+
+	arcpy.analysis.Union("eez_imm;ne_Sub", "eez_ne_Union"  , "ALL", None, "NO_GAPS")
+	arcpy.cartography.SimplifyPolygon("ne_Sub", "ne_Sub_SimplifyPolygon", "POINT_REMOVE", "1 Kilometers", "0 Unknown", "RESOLVE_ERRORS", "NO_KEEP", None)
+	arcpy.env.extent = 'eez_ne_Union'
+	arcpy.management.SelectLayerByLocation("eez_Sur", "WITHIN_A_DISTANCE", "ne_Sub_SimplifyPolygon", "100 Meters", "NEW_SELECTION", "NOT_INVERT")
 	arcpy.management.SelectLayerByLocation("eez_Sur", "WITHIN_A_DISTANCE", "eez_imm", "100 Meters", "ADD_TO_SELECTION", "NOT_INVERT")
-	arcpy.conversion.FeatureClassToFeatureClass("eez_Sur", r"memory", "eez_erase")
+	arcpy.conversion.FeatureClassToFeatureClass("eez_Sur", gdb, "eez_erase")
 	arcpy.env.extent = None
 	arcpy.management.SelectLayerByAttribute("eez_Sur", "CLEAR_SELECTION", '', None)
 
 	arcpy.env.extent = 'ne_Sub'
-	arcpy.management.SelectLayerByLocation("ne_total", "WITHIN_A_DISTANCE", "ne_Sub", "100 Meters", "NEW_SELECTION", "NOT_INVERT")
-	arcpy.conversion.FeatureClassToFeatureClass("ne_total", r"memory", "NE_local")
+	arcpy.management.SelectLayerByLocation("ne_total", "WITHIN_A_DISTANCE", "ne_Sub_SimplifyPolygon", "100 Meters", "NEW_SELECTION", "NOT_INVERT")
+	arcpy.conversion.FeatureClassToFeatureClass("ne_total", gdb, "ne_local")
 	arcpy.env.extent = None
-	
 	arcpy.management.SelectLayerByAttribute("ne_total", "CLEAR_SELECTION", '', None)
-	arcpy.conversion.FeatureClassToFeatureClass("NE_local", r"memory", "NE_other", "adm0_a3 <> '%s'" % (Country))
-	arcpy.analysis.PairwiseDissolve("NE_other", r"memory\NE_other_Diss", None, None, "MULTI_PART")
+	arcpy.conversion.FeatureClassToFeatureClass("ne_local", gdb, "ne_other", "ISO3 <> '%s'" % (Country))
+	arcpy.analysis.PairwiseDissolve("ne_other", "ne_other_Diss", None, None, "MULTI_PART")
 
-	#Dissolve NE Layer to identify states
-	arcpy.analysis.PairwiseDissolve(r"memory\ne_Sub", r"memory\states", "adm0_a3;name;code_hasc", None, "SINGLE_PART")
+	#Dissolve ne Layer to identify states
+	arcpy.analysis.PairwiseDissolve("ne_Sub",  "states", "ISO3;NAME_1;HASC_1", None, "SINGLE_PART")
 
 	#Create single boundary for country assigned by ne and buffer to identify any gaps between ne and EEZ layers
-	arcpy.analysis.PairwiseDissolve(r"memory\ne_Sub", r"memory\Country_diss", None, None, "MULTI_PART")
+	arcpy.analysis.PairwiseDissolve("ne_Sub", "Country_diss", None, None, "MULTI_PART")
 
-	arcpy.env.extent = 'eez_NE_Union'
-	arcpy.analysis.PairwiseDissolve("eez_NE_Union", r"memory\eez_NE_Union_Diss", None, None, "MULTI_PART")
-	arcpy.management.SelectLayerByLocation("eez_total;ne_total", "WITHIN_A_DISTANCE", "eez_NE_Union_Diss", "1000 Meters", "NEW_SELECTION", "NOT_INVERT")
-	arcpy.analysis.Union("ne_total;eez_total", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Surrounding_Union", "ALL", None, "NO_GAPS")
+	arcpy.analysis.PairwiseDissolve("eez_ne_Union", "eez_ne_Union_Diss", None, None, "MULTI_PART")
+	arcpy.env.extent = 'eez_ne_Union'
+	arcpy.management.SelectLayerByLocation("eez_total;ne_total", "WITHIN_A_DISTANCE", "eez_ne_Union_Diss", "1000 Meters", "NEW_SELECTION", "NOT_INVERT")
+	arcpy.analysis.Union("ne_total;eez_total", "Surrounding_Union", "ALL", None, "NO_GAPS")
 	arcpy.env.extent = None
 	arcpy.management.SelectLayerByAttribute("ne_total", "CLEAR_SELECTION", '', None)
 	arcpy.management.SelectLayerByAttribute("eez_total", "CLEAR_SELECTION", '', None)
 
 	# get slivers, which are land but not identified by ne, intersect with thiessen so break at junctions
-	arcpy.analysis.Union("Surrounding_Union ;Country_diss ;eez_imm", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Total_Plus_Surrounding", "ALL", None, "NO_GAPS")
-	arcpy.analysis.Erase("Total_Plus_Surrounding", "eez_imm", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Total_Plus_Surrounding_EEZ_IMM", None)
-	arcpy.analysis.Erase(r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Total_Plus_Surrounding_EEZ_IMM", "ne_Sub", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Total_Plus_Surrounding_ne_Sub", None)
-	arcpy.analysis.Erase(r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Total_Plus_Surrounding_ne_Sub", "eez_erase", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Total_Plus_Surrounding_eez_erase", None)
-	arcpy.analysis.Erase(r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Total_Plus_Surrounding_eez_erase", "NE_other", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\landnotne", None)
+	arcpy.env.extent = 'eez_ne_Union'
+	arcpy.analysis.Union("Surrounding_Union ;Country_diss ;eez_imm", "Total_Plus_Surrounding", "ALL", None, "NO_GAPS")
+	arcpy.management.RepairGeometry("Total_Plus_Surrounding", "DELETE_NULL", "OGC")
+	arcpy.analysis.Erase("Total_Plus_Surrounding", "eez_total", "Total_Plus_Surrounding_EEZ_IMM", "0 Meters")
+	arcpy.management.RepairGeometry("Total_Plus_Surrounding_EEZ_IMM", "DELETE_NULL", "OGC")
+	arcpy.analysis.Erase("Total_Plus_Surrounding_EEZ_IMM", "ne_total", "landnotne", "0 Meters")
+	arcpy.management.RepairGeometry("landnotne", "DELETE_NULL", "OGC")
+
+	arcpy.env.extent = None
 
 	# create theissen polygons used to split slivers by densifying and turning boundary into points
 	arcpy.edit.Densify("states", "DISTANCE", "1 Kilometers")
-	arcpy.management.FeatureVerticesToPoints("states", r"memory\states_pts", "ALL")
+	arcpy.management.FeatureVerticesToPoints("states", "states_pts", "ALL")
 
 	# delete interior points
-	arcpy.management.FeatureToLine("Country_diss", r"C:\Users\OsgurM\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Country_diss_FeatureToLine", None, "ATTRIBUTES")
-	arcpy.analysis.PairwiseIntersect("states_pts;Country_diss_FeatureToLine", r"C:\Users\OsgurM\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\states_pts_2", "ALL", None, "POINT")
+	arcpy.management.FeatureToLine("Country_diss", "Country_diss_FeatureToLine", None, "ATTRIBUTES")
+	arcpy.analysis.PairwiseIntersect("states_pts;Country_diss_FeatureToLine", "states_pts_2", "ALL", None, "POINT")
 
 	# generate thiessen polygons of ne (dissolved to state level) for intersecting with land slivers
-	arcpy.env.extent = 'eez_NE_Union_Diss'
-	arcpy.analysis.CreateThiessenPolygons("states_pts_2", r"C:/Users\OsgurM\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\states_thiessen", "ALL")
-	arcpy.env.extent = None
-	arcpy.analysis.PairwiseDissolve("states_thiessen", r"C:/Users\OsgurM\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\theissen_mol", "adm0_a3;name;code_hasc", None, "SINGLE_PART")
+	arcpy.env.extent = 'eez_ne_Union_Diss'
+	arcpy.analysis.CreateThiessenPolygons("states_pts_2", "states_thiessen", "ALL")
+	arcpy.management.RepairGeometry("states_thiessen", "DELETE_NULL", "OGC")
+	arcpy.analysis.PairwiseDissolve("states_thiessen", "theissen_mol", "ISO3;NAME_1;HASC_1", None, "SINGLE_PART")
 	arcpy.management.RepairGeometry("theissen_mol", "DELETE_NULL", "OGC")
+	arcpy.env.extent = None
+
 
 	#Assign slivers the county information for which they fall in. Delete slivers identified that are not for the correct country and delete them
-	arcpy.management.MultipartToSinglepart("landnotne", r"memory/slivers")
-	arcpy.analysis.PairwiseIntersect("slivers;eez_imm", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\Islands", "ALL", None, "INPUT")
-	arcpy.management.SelectLayerByLocation("slivers", "WITHIN_A_DISTANCE", "eez_NE_Union_Diss", "1 Meters", "NEW_SELECTION", "INVERT")	
-	arcpy.management.DeleteFeatures("slivers")
-	arcpy.management.SelectLayerByLocation("slivers", "WITHIN_A_DISTANCE", "NE_other", "1 Meters", "NEW_SELECTION")	
-	arcpy.management.DeleteFeatures("slivers")
+	arcpy.management.MultipartToSinglepart("landnotne", "slivers_1")
+	arcpy.analysis.PairwiseDissolve("slivers_1", "slivers", None, None, "SINGLE_PART")	
+	arcpy.management.RepairGeometry("slivers", "DELETE_NULL", "OGC")
+	arcpy.management.SelectLayerByLocation("slivers", "WITHIN_A_DISTANCE", "eez_imm", "1 Meters", "NEW_SELECTION", "INVERT")	
+	arcpy.management.SelectLayerByLocation("slivers", "WITHIN_A_DISTANCE", "ne_other", "0.1 Meters", "ADD_TO_SELECTION", "NOT_INVERT")
+	arcpy.management.SelectLayerByLocation("slivers", "WITHIN_A_DISTANCE", "ne_Sub", "0.1 Meters", "REMOVE_FROM_SELECTION", "NOT_INVERT")
+	arcpy.management.DeleteRows("slivers")
 
-	if arcpy.management.GetCount("Islands")[0] != "0":
-		arcpy.analysis.Union("slivers ;Islands ", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\sliver_Islands", "ALL", None, "NO_GAPS")
-		arcpy.analysis.PairwiseIntersect("sliver_Islands ;theissen_mol ", r"memory/slivers_int", "ALL", None, "INPUT")
-		arcpy.analysis.PairwiseDissolve("slivers_int", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\slivers_PD", "adm0_a3_1;name_1;code_hasc_1", None, "SINGLE_PART")
-		arcpy.management.AlterField("slivers_PD", "adm0_a3_1", "adm0_a3", "adm0_a3", "TEXT", 5000, "NULLABLE", "DO_NOT_CLEAR")
-		arcpy.management.AlterField("slivers_PD", "code_hasc_1", "code_hasc", "code_hasc", "TEXT", 5000, "NULLABLE", "DO_NOT_CLEAR")
-		arcpy.management.AlterField("slivers_PD", "name_1", "name", "name", "TEXT", 5000, "NULLABLE", "DO_NOT_CLEAR")
-	else:
-		arcpy.analysis.PairwiseIntersect("slivers #;theissen_mol #", r"memory/slivers_int", "ALL", None, "INPUT")
-		arcpy.analysis.PairwiseDissolve("slivers_int", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\slivers_PD", "adm0_a3_1;name_1;code_hasc_1", None, "SINGLE_PART")
-		arcpy.management.AlterField("slivers_PD", "adm0_a3_1", "adm0_a3", "adm0_a3", "TEXT", 5000, "NULLABLE", "DO_NOT_CLEAR")
-		arcpy.management.AlterField("slivers_PD", "code_hasc_1", "code_hasc", "code_hasc", "TEXT", 5000, "NULLABLE", "DO_NOT_CLEAR")
-		arcpy.management.AlterField("slivers_PD", "name_1", "name", "name", "TEXT", 5000, "NULLABLE", "DO_NOT_CLEAR")
+	arcpy.analysis.PairwiseIntersect("slivers #;theissen_mol #", "slivers_int", "ALL", None, "INPUT")
+	arcpy.management.RepairGeometry("slivers_int", "DELETE_NULL", "OGC")
+	arcpy.analysis.PairwiseDissolve("slivers_int", "slivers_PD", "ISO3;NAME_1;HASC_1", None, "SINGLE_PART")
+	arcpy.management.RepairGeometry("slivers_PD", "DELETE_NULL", "OGC")
 
+		
 	#Join the slivers with the states and add field which indicates that it is assigned to land
-	arcpy.management.Merge("slivers_PD;states", r"memory/state_slivers", 'adm0_a3 "adm0_a3" true true false 80 Text 0 0,First,#,slivers_PD,adm0_a3,0,80,states,adm0_a3,0,80;name "name" true true false 80 Text 0 0,First,#,slivers_PD,name,0,80,states,name,0,80;code_hasc "code_hasc" true true false 80 Text 0 0,First,#,slivers_PD,code_hasc,0,80,states,code_hasc,0,80;Shape_Length "Shape_Length" false true true 8 Double 0 0,First,#,slivers_PD,Shape_Length,-1,-1,states,Shape_Length,-1,-1;Shape_Area "Shape_Area" false true true 8 Double 0 0,First,#,slivers_PD,Shape_Area,-1,-1,states,Shape_Area,-1,-1', "NO_SOURCE_INFO")
-	arcpy.analysis.PairwiseDissolve("state_slivers", r"memory/states_mol", "adm0_a3;name;code_hasc", None, "SINGLE_PART")
+	arcpy.management.Merge("slivers_PD;states", "state_slivers")
+	arcpy.management.RepairGeometry("state_slivers", "DELETE_NULL", "OGC")
+	arcpy.analysis.PairwiseDissolve("state_slivers", "states_mol", "ISO3;HASC_1;NAME_1", None, "MULTI_PART")
+	arcpy.management.RepairGeometry("states_mol", "DELETE_NULL", "OGC")
 	arcpy.management.AddField("states_mol", "type", "TEXT", None, None, None, '', "NULLABLE", "NON_REQUIRED", '')
 	arcpy.management.CalculateField("states_mol", "type", '"Land"', "PYTHON3", '')
 
 	# get regions out to eez as full regions offshore and add field that identifies them as EEZ. (Some fields need renaming due to geoprocessing that occured earlier)
 	arcpy.management.RepairGeometry("eez_imm", "DELETE_NULL", "OGC")
-	arcpy.analysis.PairwiseIntersect("eez_imm #;theissen_mol #", r"memory/eez_imm_Local", "ALL", None, "INPUT")
-	arcpy.analysis.PairwiseDissolve("eez_imm_Local", r"C:\Users\OsgurM\Documents\ArcGIS\Projects\NE_EEZ\NE_EEZ.gdb\eez_imm_Local_PD", "adm0_a3;name;ISO_Ter1;ISO_Ter2;ISO_Ter3;code_hasc", None, "MULTI_PART")
+	arcpy.analysis.PairwiseIntersect("eez_imm #;theissen_mol #", "eez_imm_Local", "ALL", None, "INPUT")
+	arcpy.management.RepairGeometry("eez_imm_Local", "DELETE_NULL", "OGC")
+	arcpy.analysis.PairwiseDissolve("eez_imm_Local", "eez_imm_Local_PD", "ISO3;NAME_1;ISO_Ter1;ISO_Ter2;ISO_Ter3;HASC_1;Pol_type", None, "MULTI_PART")
+	arcpy.management.RepairGeometry("eez_imm_Local_PD", "DELETE_NULL", "OGC")
 	arcpy.management.AddField("eez_imm_Local_PD", "type", "TEXT", None, None, None, '', "NULLABLE", "NON_REQUIRED", '')
 	arcpy.management.CalculateField("eez_imm_Local_PD", "type", '"EEZ"', "PYTHON3", '')
 
 	#Ensure no extra area is included by deleting anything that overlaps with ne or EEZ that isnt assigned to the country
-	arcpy.analysis.PairwiseIntersect(r"memory\states_mol;eez_total", r"memory\EEZ_Rem", "ONLY_FID", None, "INPUT")
+	arcpy.env.extent = 'eez_ne_Union'
+	arcpy.analysis.PairwiseIntersect("states_mol;eez_total", "EEZ_Rem", "ONLY_FID", None, "INPUT")
+	arcpy.management.RepairGeometry("EEZ_Rem", "DELETE_NULL", "OGC")
 	if arcpy.management.GetCount("EEZ_Rem")[0] == "0":
-		arcpy.conversion.FeatureClassToFeatureClass("states_mol", r"memory", "states_mol_Erase")
+		arcpy.conversion.FeatureClassToFeatureClass("states_mol", gdb, "states_mol_Erase")
+		arcpy.management.RepairGeometry("states_mol_Erase", "DELETE_NULL", "OGC")
+
 	else:
-		arcpy.analysis.Erase("states_mol", "eez_total", r"memory/states_mol_Erase", None)
+		arcpy.analysis.Erase("states_mol", "eez_total", "states_mol_Erase", "0 Meters")
+		arcpy.management.RepairGeometry("states_mol_Erase", "DELETE_NULL", "OGC")
+
+	arcpy.env.extent = None
 	
 	arcpy.Merge_management(['states_mol_Erase', 'eez_imm_Local_PD'], '%s/NE_EEZ_%s.shp' % (outdir, Country))
+	arcpy.management.RepairGeometry('%s/NE_EEZ_%s.shp' % (outdir, Country), "DELETE_NULL", "OGC")
+
 
 	#Clean out the File Geodatabase each iteration to keep memory lower
 	print(Country + "," + " finished ", str(datetime.datetime.now().time()), str(datetime.datetime.now().date()))
 	arcpy.management.Delete(gdb)
-	arcpy.management.Delete("memory", '')
 	
 	
-	
-#Joining with ISO3 values that that dont have an EEZ
-arcpy.conversion.TableToTable(r"C:\Users\OsgurM\Documents\ArcGIS\Projects\NE_EEZ\Landlocked.csv", r"C:\Users\OsgurM\Documents\ArcGIS\Projects\NE_EEZ\BaseData.gdb", "Landlocked", '', r'GID_0 "GID_0" true true false 8000 Text 0 0,First,#,C:\Users\OsgurM\Documents\ArcGIS\Projects\GADM_EEZ\Landlocked.csv,GID_0,0,8000', '')	
-arcpy.management.AddJoin("gadm36", "GID_0", "Landlocked", "GID_0", "KEEP_COMMON")
-arcpy.conversion.FeatureClassToFeatureClass("gadm36", r"C:\Users\OsgurM\Documents\ArcGIS\Projects\NE_EEZ\Scratch.gdb", "Landlocked_Working", '', 'GID_0 "GID_0" true true false 80 Text 0 0,First,#,gadm36,gadm36.GID_0,0,80;NAME_1 "NAME_1" true true false 80 Text 0 0,First,#,gadm36,gadm36.NAME_1,0,80;HASC_1 "HASC_1" true true false 80 Text 0 0,First,#,gadm36,gadm36.HASC_1,0,80;Shape_Length "Shape_Length" false true true 8 Double 0 0,First,#,gadm36,gadm36.Shape_Length,-1,-1;Shape_Area "Shape_Area" false true true 8 Double 0 0,First,#,gadm36,gadm36.Shape_Area,-1,-1;OBJECTID "OBJECTID" false true false 4 Long 0 9,First,#,gadm36,Landlocked.OBJECTID,-1,-1;GID_01 "GID_0" true true false 8000 Text 0 0,First,#,gadm36,Landlocked.GID_0,0,8000', '')
-arcpy.analysis.Erase(r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\Scratch.gdb\Landlocked_Working", "EEZ_total", r"C:\Users\osgurm\Documents\ArcGIS\Projects\NE_EEZ\Scratch.gdb\Landlocked", None)
 
-	
 ###Further adjustments that are needed
 # Holes in EEZ layer that should be assigned as ABNJ are being assigned as land. These need to be removed from the dataset
 #Uraguay Land over argentina needs to be manually removed
