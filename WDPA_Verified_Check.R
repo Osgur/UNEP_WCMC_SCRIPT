@@ -18,29 +18,24 @@ library(shiny)
 library(tidyverse)
 library(png)
 
-lu_CountryNames_Jan2018 <- read.csv("C:/Users/osgurm/OneDrive - WCMC/00_Data Management/Look_Up_Tables/lu_CountryNames_Jan2018.csv")
-
-lu_ISO2_ISO3 <- read_excel("C:/Users/osgurm/Downloads/lu_ISO2_ISO3.xlsx")
-
-ISOdata <- merge(lu_CountryNames_Jan2018[,1:2], lu_ISO2_ISO3[,1:2], by.x = "ISO3", by.y = "ISO 3")
-
 Path <- "C:/Users/OsgurM/Downloads/WDPA_MASTER.gdb"
 ogrListLayers(Path)
 
-ISO2 <- 
 
 CountryNames <- read.csv("C:/Users/OsgurM/OneDrive - WCMC/00_Data Management/Look_Up_Tables/lu_CountryNames_Jan2018.csv") %>%
   select(c(1:2))
+
+ISO2 <- read_excel("C:/Users/OsgurM/OneDrive - WCMC/00_Data Management/Look_Up_Tables/Regions2ISO3.xlsx")%>%
+  select(c(2:3))
 #######Read in the data layers######
 
+WDPA_Stats <- read_excel("C:/Users/OsgurM/Downloads/July2019_National_Coverage_Stats.xlsx")
+
 #Public
-<<<<<<< HEAD
+
 WDPA_Py <- data.frame(read_sf(Path, layer = "WDPA_poly_Jul2019"))
 WDPA_Pt <- data.frame(read_sf(Path, layer = "WDPA_point_Jul2019"))
-=======
-WDPA_Py <- data.frame(st_read(Path, layer = "WDPA_poly_Jul2019"))
-WDPA_Pt <- data.frame(st_read(Path, layer = "WDPA_point_Jul2019"))
->>>>>>> 5a6256f19e47156a157e4be8b2139769151e2092
+
 
 #Restricted for China
 China_NR_Res<- data.frame(st_read(Path, layer = "CHN_restricted_Nov2018_NR"))
@@ -125,11 +120,14 @@ Verified <- Verified %>%
   group_by(ISO3) %>%
   summarize_if(is.numeric, sum, na.rm=TRUE)
 
-<<<<<<< HEAD
+
 Verified <- merge(ISOdata, Verified, by = "ISO3", all.y = T)
-=======
 Verified <- merge(CountryNames, Verified, by = "ISO3")
 Verified <- merge(Verified, Points_Poly, by = "ISO3")
->>>>>>> 5a6256f19e47156a157e4be8b2139769151e2092
+
+Verified <- merge(Verified, WDPA_Stats, by.x = "ISO3", by.y = "iso3", all = T)
+Verified <- merge(Verified, ISO2, by.x = "ISO3", by.y = "alpha-3", all = T)
+
+Verified[is.na(Verified)] <- 0
 
 write.csv(Verified, "WDPA_Verified.csv", row.names = F)
