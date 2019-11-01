@@ -65,7 +65,6 @@ while  i <  len(Coastal_Countries):
 	arcpy.env.parallelProcessingFactor = "100%"
 
 	arcpy.management.Delete(gdb)
-	arcpy.management.Delete("memory", '')
 
 	# set these variables and keep if running while loop
 	Country = Coastal_Countries[i]
